@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('digglyFeProto', ['ngAnimate', 'ngCookies', 'ngSanitize', 'restangular', 'ui.router', 'mm.foundation']);
+    .module('digglyFeProto', ['ngAnimate', 'd3', 'ngCookies', 'ngSanitize', 'restangular', 'ui.router', 'mm.foundation']);
 
 })();

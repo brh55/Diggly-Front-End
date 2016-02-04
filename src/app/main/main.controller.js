@@ -9,6 +9,8 @@
   function MainController($timeout, DigglyService, toastr) {
     var vm = this;
 
-    DigglyService.getAllTopics();
+    DigglyService.getAllTopics().then(function(data) {
+        console.log(data);
+    });
   }
 })();

@@ -8,34 +8,51 @@
 
   /** @ngInject */
   function DigglyService(Restangular) {
-    var DIGGLY_BASEURL = "rack36.cs.drexel.edu:8000/diggly";
-    // TODO: Export to config if gets to large
+    var DIGGLY_BASEURL = "http://localhost:8000/diggly";
+    // Configs
     Restangular.setBaseUrl(DIGGLY_BASEURL);
-    Restangular.setDefaultRequestParams('jsonp', {callback: 'JSON_CALLBACK'});
+
     // Main route
     var wikiTopics = Restangular.all('topics');
 
-    var action = this.action = {
+    var a = this.action = {
+      /**
+       * Get all topics
+       * Request: /topics
+       *
+       * @return {object} Returns a promise of object containing topic data
+       */
       getAllTopics: function() {
-        wikiTopics.getList().then(function(topics) {
-          console.log(topics);
-          return topics;
-        });
+        return wikiTopics.getList();
       },
+
+      /**
+       * Get information on one topic
+       * Request: /topics/:topicId
+       *
+       * @param  {number} topicId Id of Wikipedia Article
+       * @return {object}         Returns a promise containing one article data
+       */
       getTopic: function(topicId) {
-        Restangular.one('topics', topicId).then(function(topic) {
-          return topic;
-        })
+        return Restangular.one('topics', topicId);
+      },
+
+      /**
+       * Get the relevant topic of an article
+       * Request: /topics/explore/:topicId
+       *
+       * @param  {num} topicId Id of Wikipedia
+       * @return {object}         Returns a promise restangular topic
+       */
+      getRelevantTopics: function(topicId) {
+        return Restangular.one('explore', topicId);
       }
-      // Not functioning
-      // getScore: function() {
-      //   Restangular.one();
-      // }
     }
 
     return {
-      getAllTopics: action.getAllTopics,
-      getTopic: action.getTopic
+      getAllTopics: a.getAllTopics,
+      getTopic: a.getTopic,
+      getRelevantTopics: a.getRelevantTopics
     }
   }
 
@@ -43,5 +60,5 @@
 
 // /topics/:id
 // /topics/explore/:id  // Main topic and Link topic and score
-// /topics/related/all/:id 
+// /topics/related/all/:id
 // /topics/related/top/   //returning the top ones
