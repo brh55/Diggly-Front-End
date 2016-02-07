@@ -62,7 +62,7 @@
               var force = d3.layout.force()
                             .nodes(m.d3Data.nodes)
                             .links(m.d3Data.edges)
-                            .size([20, 20])
+                            .size([500, 500])
                             .linkDistance(200)
                             .charge([-500])
                             .theta(0.1)
@@ -172,7 +172,41 @@
                   .attr('fill', '#ccc')
                   .attr('stroke','#ccc');
 
+              force.on("tick", function(){
 
+                  edges.attr({"x1": function(d){return d.source.x;},
+                              "y1": function(d){return d.source.y;},
+                              "x2": function(d){return d.target.x;},
+                              "y2": function(d){return d.target.y;}
+                  });
+
+                  nodes.attr(
+                    {
+                      "cx": function (d) { return d.x },
+                      "cy": function (d) { return d.y }
+                    }
+                  );
+
+                  nodelabels.attr("x", function(d) { return d.x; })
+                            .attr("y", function(d) { return d.y; });
+
+                  edgepaths.attr('d', function(d) { var path='M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
+                                                     //console.log(d)
+                                                     return path});
+
+
+                  edgelabels.attr('transform',function(d,i){
+                      if (d.target.x<d.source.x){
+                          bbox = this.getBBox();
+                          rx = bbox.x+bbox.width/2;
+                          ry = bbox.y+bbox.height/2;
+                          return 'rotate(180 '+rx+' '+ry+')';
+                          }
+                      else {
+                          return 'rotate(0)';
+                          }
+                  });
+                });
 
               } // End of Scope Render
         });
