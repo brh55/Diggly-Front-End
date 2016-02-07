@@ -23,7 +23,8 @@
        * @return {object} Returns a promise of object containing topic data
        */
       getAllTopics: function() {
-        return wikiTopics.getList();
+        return wikiTopics
+                .getList();
       },
 
       /**
@@ -34,8 +35,10 @@
        * @return {object}         Returns a promise containing one article data
        */
       getTopic: function(topicId) {
-        return Restangular.one('topics', topicId);
-      },
+        return Restangular
+                .one('topics', topicId)
+                .get();
+        },
 
       /**
        * Get the relevant topic of an article
@@ -45,7 +48,8 @@
        * @return {object}         Returns a promise restangular topic
        */
       getRelevantTopics: function(topicId) {
-        return Restangular.one('explore', topicId);
+        return wikiTopics.one('explore', topicId)
+                .get();
       }
     }
 
