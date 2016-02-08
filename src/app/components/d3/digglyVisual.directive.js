@@ -10,11 +10,12 @@
     var directive = {
       restrict: 'EA',
       scope: {
-        data: '='
+        data: '=',
+        onClick: '&'
       },
       link: function(scope, element, attrs) {
         var m = scope.model = {
-          nodeDataSet: {
+          d3Data: {
             nodes: '',
             edges: ''
           }
@@ -54,8 +55,8 @@
               if (!data) return;
 
               // Set up Data
-              var nodeData = createNodeData(data);
-              m.d3Data = nodeData;
+              m.d3Data.nodes = createNodeData(data);
+              m.d3Data.edges = createEdges(data.linked_topics.length);
 
               var colors = d3.scale.category10();
 
@@ -84,7 +85,8 @@
                             .append('circle')
                             .attr({
                               'r': function(d, i) {
-                                  return d.score * 30 // TODO: Find a better number or dynamic number based on sizing
+                                console.log(d);
+                                  return d.score * 35 // TODO: Find a better number or dynamic number based on sizing
                               },
                               'class': function(d, i) {
                                   return 'node-' + i;
@@ -112,7 +114,7 @@
                                   'stroke': 'black'
                                 })
                                 .text(function(d) {
-                                  return d.article_title;
+                                  return d.title;
                                 })
 
               var edgepaths = svg.selectAll('.edgepath')
@@ -173,7 +175,6 @@
                   .attr('stroke','#ccc');
 
               force.on("tick", function(){
-
                   edges.attr({"x1": function(d){return d.source.x;},
                               "y1": function(d){return d.source.y;},
                               "x2": function(d){return d.target.x;},
@@ -193,19 +194,6 @@
                   edgepaths.attr('d', function(d) { var path='M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
                                                      //console.log(d)
                                                      return path});
-
-
-                  edgelabels.attr('transform',function(d,i){
-                      if (d.target.x<d.source.x){
-                          bbox = this.getBBox();
-                          rx = bbox.x+bbox.width/2;
-                          ry = bbox.y+bbox.height/2;
-                          return 'rotate(180 '+rx+' '+ry+')';
-                          }
-                      else {
-                          return 'rotate(0)';
-                          }
-                  });
                 });
 
               } // End of Scope Render
@@ -222,7 +210,9 @@
      * @return {array}      a nested mainNode object within an array
      */
     var createMainNode = function(data) {
-      var mainNode = _.omit(data, ['linked_topics']);
+      var mainNode = {};
+      mainNode = _.omit(data, ['linked_topics']);
+      mainNode.title = mainNode.article_title;
       mainNode.score = 1; // Highest relevancy because it is the topic itself
 
       return [mainNode];
@@ -237,24 +227,21 @@
      * @return {object}      D3 Dataset
      */
     var createNodeData = function(data) {
-      var dataSet = {
-        nodes: '',
-        edges: ''
-      };
+      var nodes = _.union(createMainNode(data), data.linked_topics);
 
-      dataSet.nodes = _.union(createMainNode(data), data.linked_topics);
+      return nodes;
+    };
 
-      var edges = _.times(data.linked_topics.I, function(number) {
+    var createEdges = function(edgeCount) {
+      var edges = _.times(edgeCount, function(number) {
         return {
           source: number + 1,
           target: 0 // target back to main node.
         };
       });
 
-      dataSet.edges = edges;
-
-      return dataSet;
-    };
+      return edges;
+    }
 
     var createIndexLabel = function (data, index, label) {
       return label + i
