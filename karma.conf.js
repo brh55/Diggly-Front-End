@@ -17,6 +17,7 @@ function listFiles() {
       path.join(conf.paths.src, '/app/**/*.module.js'),
       path.join(conf.paths.src, '/app/**/*.js'),
       path.join(conf.paths.src, '/**/*.spec.js'),
+      //path.join(conf.paths.src, '/app/**/*.mock.json'),
       path.join(conf.paths.src, '/**/*.mock.js'),
       path.join(conf.paths.src, '/**/*.html')
     ]);
@@ -39,7 +40,7 @@ module.exports = function(config) {
 
     ngHtml2JsPreprocessor: {
       stripPrefix: 'src/',
-      moduleName: 'mymacrosnow'
+      moduleName: 'diggleFeProto'
     },
 
     browsers : ['PhantomJS'],

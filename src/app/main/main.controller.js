@@ -28,13 +28,12 @@
                 m.data = response.plain(response);
                 console.log(m.data);
             });
+        },
+        init: function () {
+            if ($state.params.id) a.fetchTopic($state.params.id);
         }
     }
 
-    var init = function () {
-        if ($state.params.id) a.fetchTopic($state.params.id);
-    }
-
-    init();
+    a.init();
   }
 })();

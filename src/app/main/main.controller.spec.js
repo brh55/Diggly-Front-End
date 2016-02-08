@@ -2,14 +2,21 @@
   'use strict';
 
   describe('controllers', function(){
+    var vm;
+    var $state;
 
     beforeEach(module('digglyFeProto'));
 
-    it('should define more than 5 awesome things', inject(function($controller) {
-      var vm = $controller('MainController');
+    beforeEach(inject(function($controller, _$state_) {
+       vm = $controller('MainController');
+       $state = _$state_;
+    }));
 
-      expect(angular.isArray(vm.awesomeThings)).toBeTruthy();
-      expect(vm.awesomeThings.length > 5).toBeTruthy();
+    it('should check url params for ID', inject(function($controller) {
+        $state.params.id = 2;
+        spyOn(vm.action, 'fetchTopic');
+        vm.action.init();
+        expect(vm.action.fetchTopic).toHaveBeenCalled();
     }));
   });
 })();
