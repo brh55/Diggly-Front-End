@@ -20,8 +20,6 @@
                 // Clean for any duplicates
                 m.history = _.uniq(m.history);
             });
-
-            console.log(m.currentTopic);
         },
         fetchTopic: function(id) {
             DigglyService.getRelevantTopics(id).then(function(response) {
@@ -29,10 +27,15 @@
                 m.data = response.plain(response);
                 // set current topic
                 m.currentTopic = _.omit(m.data, 'linked_topics');
+                // change location url, but don't reload to preserve model
+                $state.go($state.current, {
+                    id: id
+                }, {
+                    location: true,
+                    notify: false,
+                    reload: false
+                });
             });
-        },
-        setCurrentTopic: function () {
-
         },
         onClick: function(item) {
             a.updateHistory();
