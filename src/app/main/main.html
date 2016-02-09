@@ -1,6 +1,23 @@
 <div class="container">
 
-<div class="visual" style="height: 700px">
-  <diggly-visual data="main.model.data"></diggly-visual>
+<div class="visual" style="height: 400px">
+  <diggly-visual data="main.model.data" on-click="main.action.onClick(item)"></diggly-visual>
+</div>
+
+<!-- Temporary for now -->
+<div class="metaData" style="width: 400px">
+    <h2>{{ main.model.currentTopic.article_title }}</h2>
+    <p>{{ main.model.currentTopic.summary }}</p>
+    <a ng-href="main.model.currentTopic.wiki_link">View on Wikipedia</a>
+</div>
+
+<div class="History" style="float: right; width: 400px">
+    <ul>
+        <div ng-repeat="topic in main.model.history">
+            <h4>{{ topic.article_title}}</h4>
+            <p>{{ topic.summary | limitTo: 150 }} ...</p>
+            <a href="{{ topic.wiki_link }}" target="_blank">View it on Wikipedia</a>
+        </div>
+    </ul>
 </div>
 </div>

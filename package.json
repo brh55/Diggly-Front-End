@@ -39,6 +39,7 @@
     "karma": "~0.12.36",
     "karma-angular-filesort": "~0.1.0",
     "karma-jasmine": "~0.3.5",
+    "karma-json-fixtures-preprocessor": "0.0.6",
     "karma-ng-html2js-preprocessor": "~0.1.2",
     "karma-nyan-reporter": "^0.2.3",
     "karma-phantomjs-launcher": "~0.2.0",

@@ -54,6 +54,7 @@
               // When nothing exist, return
               if (!data) return;
 
+
               // Set up Data
               m.d3Data.nodes = createNodeData(data);
               m.d3Data.edges = createEdges(data.linked_topics.length);
@@ -85,7 +86,6 @@
                             .append('circle')
                             .attr({
                               'r': function(d, i) {
-                                console.log(d);
                                   return d.score * 35 // TODO: Find a better number or dynamic number based on sizing
                               },
                               'class': function(d, i) {
@@ -95,7 +95,13 @@
                             .style('fill', function(d, i) {
                               return colors(i);
                             })
-                            .call(force.drag);
+                            .call(force.drag)
+                            .on('click', function(d, i) {
+                              if (i !== 0) {
+                                var selectedId = d.target_id;
+                                scope.onClick({item: selectedId})
+                              }
+                            });
 
               var nodelabels = svg.selectAll('.nodelabel')
                                 .data(m.d3Data.nodes)

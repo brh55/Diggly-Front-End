@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, DigglyService, $state) {
+  function MainController(DigglyService, $state, $scope) {
     var m = this.model = {
         history: [],
         currentTopic: '',
@@ -20,14 +20,23 @@
                 // Clean for any duplicates
                 m.history = _.uniq(m.history);
             });
+
+            console.log(m.currentTopic);
         },
         fetchTopic: function(id) {
-            console.log('hi');
             DigglyService.getRelevantTopics(id).then(function(response) {
                 // Strip restangular objects and keep data clean
                 m.data = response.plain(response);
-                console.log(m.data);
+                // set current topic
+                m.currentTopic = _.omit(m.data, 'linked_topics');
             });
+        },
+        setCurrentTopic: function () {
+
+        },
+        onClick: function(item) {
+            a.updateHistory();
+            a.fetchTopic(item);
         },
         init: function () {
             if ($state.params.id) a.fetchTopic($state.params.id);

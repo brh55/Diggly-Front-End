@@ -15,10 +15,6 @@
     toastr.options.positionClass = 'toast-top-right';
     toastr.options.preventDuplicates = true;
     toastr.options.progressBar = true;
-
-    // Remove when on server
-    RestangularProvider.setDefaultRequestParams('jsonp', {callback: 'JSON_CALLBACK'});
-
   }
 
 })();
