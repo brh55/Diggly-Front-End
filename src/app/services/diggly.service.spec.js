@@ -7,7 +7,9 @@
     var httpBackend;
 
     // TODO: Revisit and add more variation responses after json parse works
-    var mock = [{"article_title": "Rodentia", "linked_topics": [{"description": "Rodent is linked to Rodentia", "wiki_link": "https://en.wikipedia.org/wiki/Rodent", "title": "Rodent", "target_id": 19337310, "score": 0.85, "source_id": 26087}], "description": "", "wiki_link": "https://en.wikipedia.org/wiki/Rodentia", "article_id": 26087, "summary": ""}];
+    var mock = [
+    {"article_title": "Rodentia", "linked_topics": [{"description": "Rodent is linked to Rodentia", "wiki_link": "https://en.wikipedia.org/wiki/Rodent", "title": "Rodent", "target_id": 19337310, "score": 0.85, "source_id": 26087}], "description": "", "wiki_link": "https://en.wikipedia.org/wiki/Rodentia", "article_id": 26087, "summary": ""}
+    ];
 
     beforeEach(module('digglyFeProto'));
 

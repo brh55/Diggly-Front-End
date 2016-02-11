@@ -1,0 +1,10 @@
+<div class="history"><h2>History</h2>
+    <ul>
+        <div ng-repeat="topic in history.model.history">
+            <h4>{{ topic.article_title}}</h4>
+            <p>{{ topic.summary | limitTo: 150 }} ...</p>
+            <a href="{{ topic.wiki_link }}" target="_blank">View it on Wikipedia</a>
+            <hr>
+        </div>
+    </ul>
+</div>

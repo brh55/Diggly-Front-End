@@ -3,15 +3,18 @@
 
   angular
     .module('digglyFeProto')
-    .controller('MainController', MainController);
+    .controller('VisualController', VisualController);
 
   /** @ngInject */
-  function MainController(DigglyService, $state, $scope) {
+  function VisualController(DigglyService, $state, $scope) {
     var m = this.model = {
         history: [],
         currentTopic: '',
         data: ''
     };
+
+    // Should be a better way to pass around to other views
+    $scope.history = m.history;
 
     var a = this.action = {
         updateHistory: function() {

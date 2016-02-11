@@ -8,14 +8,36 @@
   /** @ngInject */
   function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
-        url: '/:id',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
-        controllerAs: 'main'
-      });
+      .state('explore', {
+        url: '/explore/:id',
+        templateUrl: 'app/explore/layout.html',
+        redirectTo: 'explore.visual'
+      })
+      .state('explore.visual', {
+        url: '/visual',
+        parent: 'explore',
+        templateUrl: 'app/explore/views/visual.html',
+        controller: 'VisualController',
+        controllerAs: 'visual',
+        params: {
+          history: []
+        }
+      })
+      .state('explore.history', {
+        parent: 'explore',
+        url: '/history',
+        templateUrl: 'app/explore/views/history.html',
+        controller: 'HistoryController',
+        controllerAs: 'history',
+        params: {
+          history: []
+        }
+      })
 
-    $urlRouterProvider.otherwise('/');
+
+
+      // For time being
+    $urlRouterProvider.otherwise('/explore/:id');
   }
 
 })();
