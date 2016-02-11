@@ -65,7 +65,7 @@
                             .nodes(m.d3Data.nodes)
                             .links(m.d3Data.edges)
                             .size([500, 500])
-                            .linkDistance(200)
+                            .linkDistance(130)
                             .charge([-500])
                             .theta(0.1)
                             .gravity(0.05)
@@ -86,7 +86,7 @@
                             .append('circle')
                             .attr({
                               'r': function(d, i) {
-                                  return d.score * 35 // TODO: Find a better number or dynamic number based on sizing
+                                  return d.score * 40 // TODO: Find a better number or dynamic number based on sizing
                               },
                               'class': function(d, i) {
                                   return 'node-' + i;
