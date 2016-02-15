@@ -14,7 +14,7 @@
              */
             clearHistory: function () {
                 var arrayLen = $window.__history__.length;
-                $window.__history__ = __.drop($window.__history__, arrayLen);
+                $window.__history__ = _.drop($window.__history__, arrayLen);
             },
             /**
              * Removes a bookmark item from the bookmark list
@@ -22,8 +22,8 @@
              * @return {void}
              */
             removeBookmarkItem: function (item) {
-                __.remove($window.__history__, function(currentHistory) {
-                    currentHistory === item;
+                _.remove($window.__history__, function(currentHistory) {
+                    return currentHistory === item;
                 });
             },
 

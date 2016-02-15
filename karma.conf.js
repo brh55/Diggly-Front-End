@@ -19,7 +19,8 @@ function listFiles() {
       path.join(conf.paths.src, '/**/*.spec.js'),
       //path.join(conf.paths.src, '/app/**/*.mock.json'),
       path.join(conf.paths.src, '/**/*.mock.js'),
-      path.join(conf.paths.src, '/**/*.html')
+      path.join(conf.paths.src, '/**/*.html'),
+      path.join('bower_components/lodash/lodash.min.js')
     ]);
 }
 
