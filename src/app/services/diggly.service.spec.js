@@ -2,7 +2,6 @@
   'use strict';
 
   describe('DigglyService', function(){
-    var vm;
     var DigglyService;
     var httpBackend;
 
@@ -29,6 +28,7 @@
     });
 
     it('should return all topics', function() {
+        console.log('test)')
         DigglyService.getAllTopics().then(function(data) {
           var plainData = data.plain(data);
 
