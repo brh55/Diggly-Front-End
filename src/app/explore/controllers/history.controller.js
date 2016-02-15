@@ -6,7 +6,7 @@
     .controller('HistoryController', HistoryController);
 
   /** @ngInject */
-  function HistoryController(ExploreService, $state, $window) {
+  function HistoryController(ExploreService) {
     var m = this.model = {
         history: [],
     };

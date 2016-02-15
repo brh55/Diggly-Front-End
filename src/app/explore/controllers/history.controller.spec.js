@@ -19,7 +19,6 @@
 
     it('should check url params for ID', function() {
         $state.params.id = 2;
-        console.log($state);
         spyOn(vm.action, 'fetchTopic');
         vm.action.init();
         expect(vm.action.fetchTopic).toHaveBeenCalled();

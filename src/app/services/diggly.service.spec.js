@@ -30,11 +30,10 @@
     });
 
     it('should return all topics', function() {
-        console.log('test)')
         DigglyService.getAllTopics().then(function(data) {
           var plainData = data.plain(data);
 
-          expect(data.length).toBe(1);
+          expect(plainData.length).toBe(1);
         });
     });
 

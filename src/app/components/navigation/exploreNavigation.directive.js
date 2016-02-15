@@ -10,7 +10,7 @@
         var directive = {
             restrict: 'EA',
             templateUrl: 'app/components/navigation/nav.html'
-        }
+        };
 
         return directive;
     }

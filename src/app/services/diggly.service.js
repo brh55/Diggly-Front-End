@@ -51,13 +51,13 @@
         return wikiTopics.one('explore', topicId)
                 .get();
       }
-    }
+    };
 
     return {
       getAllTopics: a.getAllTopics,
       getTopic: a.getTopic,
       getRelevantTopics: a.getRelevantTopics
-    }
+    };
   }
 
 })();

@@ -35,7 +35,7 @@
         templateUrl: 'app/explore/views/bookmark.html',
         controller: 'BookmarkController',
         controllerAs: 'bookmark'
-      })
+      });
 
     // For time being
     $urlRouterProvider.otherwise('/explore/:id');

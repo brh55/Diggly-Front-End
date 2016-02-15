@@ -6,7 +6,7 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastr, RestangularProvider) {
+  function config($logProvider, toastr) {
     // Enable log
     $logProvider.debugEnabled(true);
 

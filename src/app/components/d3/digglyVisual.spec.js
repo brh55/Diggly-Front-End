@@ -37,7 +37,7 @@
 
         if (!template) {
             // set a default code template here
-            template = '</div example></div>'
+            template = '</div example></div>';
         }
 
         compiledElement = $compile(template)($scope);
