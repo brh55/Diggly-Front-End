@@ -3,10 +3,10 @@
 
     angular
         .module('digglyFeProto')
-        .factory('ExploreServices', ExploreServices);
+        .factory('ExploreService', ExploreService);
 
     /** @ngInject */
-    function ExploreServices ($window) {
+    function ExploreService ($window) {
         var actions = {
             /**
              * Clears history in window object

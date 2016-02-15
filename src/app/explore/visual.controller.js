@@ -6,7 +6,7 @@
     .controller('VisualController', VisualController);
 
   /** @ngInject */
-  function VisualController(DigglyService, ExploreServices, $state, $scope, $window) {
+  function VisualController(DigglyService, ExploreService, $state, $scope, $window) {
     var m = this.model = {
         history: [],
         currentTopic: '',
@@ -50,7 +50,7 @@
             if ($state.params.id) a.fetchTopic($state.params.id);
 
             // Use services for scalability
-            m.history = ExploreServices.getHistory() || [];
+            m.history = ExploreService.getHistory() || [];
         }
     }
 
