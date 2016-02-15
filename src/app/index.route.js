@@ -8,9 +8,11 @@
   /** @ngInject */
   function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
+      // Abstract parent state
       .state('explore', {
         url: '/explore/:id',
         templateUrl: 'app/explore/layout.html',
+        // This is the default child state
         redirectTo: 'explore.visual'
       })
       .state('explore.visual', {
@@ -35,9 +37,7 @@
         controllerAs: 'bookmark'
       })
 
-
-
-      // For time being
+    // For time being
     $urlRouterProvider.otherwise('/explore/:id');
   }
 
