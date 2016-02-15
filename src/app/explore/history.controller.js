@@ -6,15 +6,14 @@
     .controller('HistoryController', HistoryController);
 
   /** @ngInject */
-  function HistoryController($state, $scope) {
+  function HistoryController(ExploreServices, $state, $window) {
     var m = this.model = {
         history: [],
     };
 
     var a = this.action = {
         init: function() {
-            console.log($state.params);
-            m.history = $state.params.history || '';
+            m.history = ExploreServices.getHistory() || '';
         }
     };
 

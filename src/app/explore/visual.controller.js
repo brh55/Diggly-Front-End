@@ -6,7 +6,7 @@
     .controller('VisualController', VisualController);
 
   /** @ngInject */
-  function VisualController(DigglyService, $state, $scope) {
+  function VisualController(DigglyService, ExploreServices, $state, $scope, $window) {
     var m = this.model = {
         history: [],
         currentTopic: '',
@@ -19,9 +19,11 @@
     var a = this.action = {
         updateHistory: function() {
             $scope.$apply(function() {
-                m.history.push(m.currentTopic);
+                m.history.unshift(m.currentTopic);
                 // Clean for any duplicates
                 m.history = _.uniq(m.history);
+                $window.__history__ = m.history;
+                console.log(m.history);
             });
         },
         fetchTopic: function(id) {
@@ -46,6 +48,9 @@
         },
         init: function () {
             if ($state.params.id) a.fetchTopic($state.params.id);
+
+            // Use services for scalability
+            m.history = ExploreServices.getHistory() || [];
         }
     }
 

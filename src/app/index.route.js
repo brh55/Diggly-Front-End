@@ -18,20 +18,21 @@
         parent: 'explore',
         templateUrl: 'app/explore/views/visual.html',
         controller: 'VisualController',
-        controllerAs: 'visual',
-        params: {
-          history: []
-        }
+        controllerAs: 'visual'
       })
       .state('explore.history', {
         parent: 'explore',
         url: '/history',
         templateUrl: 'app/explore/views/history.html',
         controller: 'HistoryController',
-        controllerAs: 'history',
-        params: {
-          history: []
-        }
+        controllerAs: 'history'
+      })
+      .state('explore.bookmark', {
+        parent: 'explore',
+        url: '/bookmark',
+        templateUrl: 'app/explore/views/bookmark.html',
+        controller: 'BookmarkController',
+        controllerAs: 'bookmark'
       })
 
 
