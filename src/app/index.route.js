@@ -11,7 +11,7 @@
       // Abstract parent state
       .state('explore', {
         url: '/explore/:id',
-        templateUrl: 'app/explore/layout.html',
+        templateUrl: 'app/explore/views/layout.html',
         // This is the default child state
         redirectTo: 'explore.visual'
       })
