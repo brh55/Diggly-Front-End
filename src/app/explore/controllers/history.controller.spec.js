@@ -6,22 +6,30 @@
     var $state;
     var $rootScope;
     var $scope;
+    var ExploreService;
+    var $window;
 
     beforeEach(module('digglyFeProto'));
 
-    beforeEach(inject(function($controller, _$state_, _$rootScope_) {
-       $scope = _$rootScope_.new();
+    beforeEach(inject(function($controller, _$state_, $rootScope, _$window_, _ExploreService_) {
+       $scope = $rootScope.$new();
+       ExploreService = _ExploreService_;
        vm = $controller('HistoryController', {
-          scope: $scope
+          $scope: $scope
        });
        $state = _$state_;
+       $window = _$window_;
     }));
 
-    it('should check url params for ID', function() {
-        $state.params.id = 2;
-        spyOn(vm.action, 'fetchTopic');
-        vm.action.init();
-        expect(vm.action.fetchTopic).toHaveBeenCalled();
+    beforeEach(function() {
+      $window.__history__ = ['testItem', 'testItem2'];
+    });
+
+    it('should populate model history', function() {
+      spyOn(ExploreService, 'getHistory').and.callThrough();
+      vm.action.init();
+      expect(ExploreService.getHistory).toHaveBeenCalled();
+      expect(vm.model.history).toEqual(['testItem', 'testItem2']);
     });
   });
 })();

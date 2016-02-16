@@ -12,6 +12,21 @@
     };
 
     var a = this.action = {
+        /**
+         * Wrapper to remove current item
+         * @param  {object} currentItem current history item to be remove
+         * @return {void}
+         */
+        removeItem: function(currentItem) {
+          ExploreService.removeBookmarkItem(currentItem);
+        },
+        /**
+         * Wrapper to clear history
+         * @return {void}
+         */
+        clearHistory: function() {
+          ExploreService.clearHistory();
+        },
         init: function() {
             m.history = ExploreService.getHistory() || '';
         }
