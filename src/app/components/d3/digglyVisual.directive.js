@@ -95,6 +95,9 @@
                             .style('fill', function(d, i) {
                               return colors(i);
                             })
+                            .style('cursor', function(d, i) {
+                              return (i === 0) ? 'move' : 'pointer';
+                            })
                             .call(force.drag)
                             .on('click', function(d, i) {
                               if (i !== 0) {
