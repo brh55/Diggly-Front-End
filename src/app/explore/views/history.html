@@ -1,9 +1,11 @@
 <div class="history"><h2>History</h2>
+
+<a ng-click="history.action.clearHistory()">Clear History</a>
     <ul>
         <div ng-repeat="topic in history.model.history">
             <h4>{{ topic.article_title}}</h4>
-            <p>{{ topic.summary | limitTo: 150 }} ...</p>
-            <a href="{{ topic.wiki_link }}" target="_blank">View it on Wikipedia</a>
+            <p>{{ topic.summary | limitTo: 300 }} ...</p>
+            <a href="{{ topic.wiki_link }}" target="_blank">View it on Wikipedia</a> | <a ng-click="history.action.removeItem(topic)">Remove Item</a>
             <hr>
         </div>
     </ul>
