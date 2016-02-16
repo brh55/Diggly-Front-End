@@ -23,7 +23,6 @@
                 // Clean for any duplicates
                 m.history = _.uniq(m.history);
                 $window.__history__ = m.history;
-                console.log(m.history);
             });
         },
         fetchTopic: function(id) {
@@ -33,7 +32,7 @@
                 // set current topic
                 m.currentTopic = _.omit(m.data, 'linked_topics');
                 // change location url, but don't reload to preserve model
-                $state.go($state.current, {
+                $state.go('explore.visual', {
                     id: id
                 }, {
                     location: true,
