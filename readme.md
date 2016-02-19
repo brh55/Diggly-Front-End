@@ -35,14 +35,17 @@ Commands | Description
 
 ### Unit Testing
 This repository testing suite consist of:
+
 - [Jasmine: Testing Framework](http://jasmine.github.io/)
 - [PhantomJS: Headless WebKit](http://phantomjs.org/)
 - [Karma: Test Runner](https://karma-runner.github.io/0.13/index.html)
 
-1. To create a test, name the spec with a `.spec.js` suffix:
+#### Workflow
+1. Create a test, and name the spec with a `.spec.js` suffix:
 
-    ie: 'my.controller.spec.js'
+    ie: `my.controller.spec.js`
 
-2. To run test, use `$ gulp test`. During development, using `$ gulp test:auto` will save a considerable amount of time.
+2. After writing initial test, use `$ gulp test`
+    - `$ gulp test:auto` will re-run test on every change, and can save a considerable amount of time.
 
 3. The [Nyan Report](https://github.com/dgarlitt/karma-nyan-reporter) will output the testing results.
