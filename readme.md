@@ -32,3 +32,18 @@ Commands | Description
 `gulp test:auto` |  Launches your unit tests with Karma in watch mode
 `gulp protractor` | Launches your e2e tests with Protractor
 `gulp protractor:dist` | Launches your e2e tests with Protractor on the dist files
+
+### Unit Testing
+This repository testing suite consist of:
+
+- [Jasmine: Testing Framework](http://jasmine.github.io/)
+- [Karma: Test Runner](https://karma-runner.github.io/0.13/index.html)
+- [PhantomJS: Headless WebKit](http://phantomjs.org/)
+
+1. To create a test, name the spec with a `.spec.js` suffix:
+
+    ie: 'my.controller.spec.js'
+
+2. To run test, use `$ gulp test`. During development, using `$ gulp test:auto` will save a considerable amount of time.
+
+3. The [Nyan Report](https://github.com/dgarlitt/karma-nyan-reporter) will output the testing results.
