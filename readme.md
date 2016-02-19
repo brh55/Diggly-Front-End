@@ -1,7 +1,7 @@
-# Diggly
-[![Build Status](https://img.shields.io/WikiDiggly/Diggly.svg?style=flat-square)](https://travis-ci.org/WikiDiggly/Diggly)
-[![DevDependencies Status](https://img.shields.io/david/dev/WikiDiggly/Diggly.svg?style=flat-square)](https://david-dm.org/dev/WikiDiggly/Diggly.svg)
-![Version](https://img.shields.io/github/tag/brh55/Diggly-FE-Proto.svg?style=flat-square&label=Version)
+# Diggly Front-End
+[![Build Status](https://img.shields.io/travis/brh55/Diggly-Front-End.svg?style=flat-square)](https://travis-ci.org/brh55/Diggly-Front-End)
+[![DevDependencies Status](https://img.shields.io/david/dev/brh55/Diggly-Front-End.svg?style=flat-square)](https://david-dm.org/dev/brh55/Diggly-Front-End.svg)
+![Version](https://img.shields.io/github/tag/brh55/Diggly-Front-End.svg?style=flat-square&label=Version)
 [![Drexel Senior Design](https://img.shields.io/badge/Drexel%20University-Senior%20Design-FFC600.svg?style=flat-square)](http://www.cci.drexel.edu/SeniorDesign/2015_2016/Diggly/Diggly.html)
 
 #### Scrumboard: [![Stories in Ready](https://badge.waffle.io/WikiDiggly/Diggly.svg?label=ready&title=Ready to Do - Task)](http://waffle.io/WikiDiggly/Diggly)
