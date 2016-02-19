@@ -35,10 +35,9 @@ Commands | Description
 
 ### Unit Testing
 This repository testing suite consist of:
-
 - [Jasmine: Testing Framework](http://jasmine.github.io/)
-- [Karma: Test Runner](https://karma-runner.github.io/0.13/index.html)
 - [PhantomJS: Headless WebKit](http://phantomjs.org/)
+- [Karma: Test Runner](https://karma-runner.github.io/0.13/index.html)
 
 1. To create a test, name the spec with a `.spec.js` suffix:
 
