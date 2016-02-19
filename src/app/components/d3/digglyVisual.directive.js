@@ -69,6 +69,7 @@
                             .charge([-500])
                             .theta(0.1)
                             .gravity(0.05)
+                            .on('tick', tick)
                             .start();
 
              var edges = svg.selectAll('line')
