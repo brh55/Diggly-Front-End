@@ -31,10 +31,10 @@
       })
       .state('explore.bookmark', {
         parent: 'explore',
-        url: '/bookmark',
-        templateUrl: 'app/explore/views/bookmark.html',
+        url: '/bookmarks',
+        templateUrl: 'app/explore/views/bookmarks.html',
         controller: 'BookmarkController',
-        controllerAs: 'bookmark'
+        controllerAs: 'bookmarks'
       });
 
     // For time being
