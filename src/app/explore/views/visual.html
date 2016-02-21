@@ -16,7 +16,7 @@
             <h4>{{ topic.article_title}}</h4>
             <p>{{ topic.summary | limitTo: 40 }} ...</p>
             <a href="{{ topic.wiki_link }}" target="_blank">View it on Wikipedia</a>
-            <hr>
+            <a ng-click="visual.action.addBookmark(topic)">Add to Bookmark</a>
         </div>
     </ul>
 </div>
