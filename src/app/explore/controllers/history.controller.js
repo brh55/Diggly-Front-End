@@ -18,7 +18,7 @@
              * @return {void}
              */
             removeItem: function(currentItem) {
-                ExploreService.removeBookmarkItem(currentItem);
+                ExploreService.removeHistoryItem(currentItem);
             },
 
             /**

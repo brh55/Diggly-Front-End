@@ -41,6 +41,15 @@
                 });
             });
         },
+        /**
+         * Add bookmark wrapper for the service
+         * Adapter if API changes, changes will be reflected everywhere
+         *
+         * @param {object} item Item to be bookmarked
+         */
+        addBookmark: function (item) {
+            ExploreService.addBookmark(item);
+        },
         onClick: function(item) {
             a.updateHistory();
             a.fetchTopic(item);
@@ -50,6 +59,8 @@
 
             // Use services for scalability
             m.history = ExploreService.getHistory() || [];
+            // Initialize bookmark or get them;
+            $window.__bookmarks__ = ExploreService.getBookmarks() || [];
         }
     }
 
