@@ -60,7 +60,7 @@
     it('should remove a bookmark item', function() {
       var RemovedItem = mockHistory[1];
 
-      ExploreService.removeBookmarkItem(RemovedItem);
+      ExploreService.removeHistoryItem(RemovedItem);
       expect($window.__history__.length).toBe(3);
 
       var removeTrue = _.findIndex($window.__history__, function(historyItem) {
