@@ -1,0 +1,10 @@
+<a ng-click="bookmarks.action.clearBookmarks()">Clear Bookmarks</a>
+    <ul>
+        <div ng-repeat="bookmark in bookmarks.model.bookmarks">
+            <h4>{{ bookmark.article_title}}</h4>
+            <p>{{ bookmark.summary | limitTo: 300 }} ...</p>
+            <a href="{{ bookmark.wiki_link }}" target="_blank">View it on Wikipedia</a> | <a ng-click="bookmarks.action.removeItem(topic)">Remove Bookmark</a>
+            <hr>
+        </div>
+    </ul>
+</div>
