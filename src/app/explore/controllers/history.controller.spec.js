@@ -4,7 +4,6 @@
   describe('HistoryController', function(){
     var vm;
     var $state;
-    var $rootScope;
     var $scope;
     var ExploreService;
     var $window;

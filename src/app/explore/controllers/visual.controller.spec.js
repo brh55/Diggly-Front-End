@@ -41,6 +41,7 @@
       // Wrap response
       var restangularWrapResp = Restangular.one('/topics/explore', 100).get();
 
+      $httpBackend.whenGET('app/home/views/home.html').respond(200, '');
       $httpBackend.whenGET('app/explore/views/layout.html').respond(200, '');
       $httpBackend.whenGET('app/explore/views/visual.html').respond(200, '');
       $httpBackend.whenGET('http://localhost:8000/diggly/topics/explore/100').respond(200, restangularWrapResp);
