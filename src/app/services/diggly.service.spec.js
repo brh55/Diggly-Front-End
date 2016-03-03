@@ -21,6 +21,7 @@
       httpBackend.whenGET('http://localhost:8000/diggly/topics').respond(mock);
       httpBackend.whenGET('http://localhost:8000/diggly/topics/4').respond(mock);
       httpBackend.whenGET('http://localhost:8000/diggly/topics/explore/4').respond(mock);
+      httpBackend.whenGET('app/home/views/home.html').respond(200, '');
       httpBackend.whenGET('app/explore/views/layout.html').respond(200, '');
       httpBackend.whenGET('app/explore/views/visual.html').respond(200, '');
     });
