@@ -8,6 +8,10 @@
   /** @ngInject */
   function routeConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
+      .state('home', {
+        url: '/',
+        templateUrl: 'app/home/views/home.html'
+      })
       // Abstract parent state
       .state('explore', {
         url: '/explore/:id',
@@ -38,7 +42,7 @@
       });
 
     // For time being
-    $urlRouterProvider.otherwise('/explore/:id');
+    $urlRouterProvider.otherwise('/');
   }
 
 })();
