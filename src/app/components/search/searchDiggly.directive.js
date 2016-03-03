@@ -20,7 +20,6 @@
                 var selectedSearchResult = undefined;   // Final list element that is selected from the search results
                 var selectedSearchString = "";          // The topic that is finally selected
 
-
                 $('body').on('keyup', '.searchBar', $.debounce(function(event) {
                     var keyPressed = event.keyCode;
                     if (keyPressed != 37 && keyPressed != 38 && keyPressed != 39 && keyPressed != 40 && keyPressed != 13) {
@@ -53,7 +52,9 @@
                                 }
                             });
 
-                            var len = searchResult_JSON.length;     // Number of search results acquired
+                            if (searchResult_JSON) {
+                                var len = searchResult_JSON.length;     // Number of search results acquired
+                            }
 
                             $('.results').addClass('active');
                             for (var i = 0; i < len-1; i++) {
@@ -61,7 +62,7 @@
                                 temp = searchResult_JSON[i].title.toLowerCase();
                                 var tempSearchText = searchText.toLowerCase();
                                 if(temp.indexOf(tempSearchText) >= 0 || searchResult_JSON[i].title.indexOf(tempSearchText) >= 0) {
-                                    $('.results').append('<li>' + searchResult_JSON[i].title + '</li>');
+                                    $('.results').append('<li><a diggly-topic topic="' + searchResult_JSON[i].title + '">' + searchResult_JSON[i].title + '</a></li>');
                                 }
                             }
                         }
@@ -128,6 +129,9 @@
                     searchEvent.searchString = selectedSearchString;    // Adding key searchString to search event
                     $('body').trigger(searchEvent);
                 });
+
+
+                
             }
         };
 
