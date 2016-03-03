@@ -22,9 +22,9 @@
 
                 $('body').on('keyup', '.searchBar', $.debounce(function(event) {
                     var keyPressed = event.keyCode;
-                    if (keyPressed != 37 && keyPressed != 38 && keyPressed != 39 && keyPressed != 40 && keyPressed != 13) {
+                    if (keyPressed !== 37 && keyPressed !== 38 && keyPressed !== 39 && keyPressed !== 40 && keyPressed !== 13) {
                         keyupCounter = keyupCounter + 1;
-                        if (keyupCounter%2 != 0) {
+                        if (keyupCounter%2 !== 0) {
                             debounceTimeout = 0;
                         } else {
                             debounceTimeout = 200;
@@ -35,7 +35,7 @@
 
                         searchText = $('.searchBar').val();
 
-                        if (searchText != "") {
+                        if (searchText !== "") {
                             var searchTextForQuery = searchText.replace(' ', '+');
                             /* Getting search result for the current search string in the search bar */
                             $.ajax({
@@ -71,11 +71,11 @@
 
                 $('body').on('keydown', '.searchBar', function(event) {
                     var keyPressed = event.keyCode;
-                    if (keyPressed == 37 || keyPressed == 38 || keyPressed == 39 || keyPressed == 40) {
+                    if (keyPressed === 37 || keyPressed === 38 || keyPressed === 39 || keyPressed === 40) {
                         var numResults = $('.results li').length;
                         var selectedIndex = $('.results li').index($('.selected'));
 
-                        if (keyPressed == 40) {     /* If _DOWN_ key is pressed */
+                        if (keyPressed === 40) {     /* If _DOWN_ key is pressed */
                             if (selectedIndex < 0) {
                                 $('.results li').eq(0).addClass('selected');    // Select the new element
                                 selectedIndex = 0;
@@ -86,8 +86,8 @@
                                 selectedIndex = (selectedIndex + 1)%numResults;
                                 selectedSearchResult = $('.results .selected');
                             }
-                        } else if (keyPressed == 38) {  /* If _UP_ key is pressed */
-                            if (selectedIndex == -1) {
+                        } else if (keyPressed === 38) {  /* If _UP_ key is pressed */
+                            if (selectedIndex === -1) {
                                 $('.results li').eq(numResults - 1).addClass('selected');   // Select the new element
                                 selectedIndex = numResults - 1;
                                 selectedSearchResult = $('.results .selected');
@@ -105,7 +105,7 @@
                                 selectedSearchResult = $('.results .selected');
                             }
                         }
-                    } else if (keyPressed == 13) {
+                    } else if (keyPressed === 13) {
                         selectedSearchString = $('.results .selected').text();
                         $('.searchBar').val(selectedSearchString);
                         $('.results').removeClass('active');
@@ -131,7 +131,7 @@
                 });
 
 
-                
+
             }
         };
 
