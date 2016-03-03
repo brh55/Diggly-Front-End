@@ -14,7 +14,6 @@
                 topic: '='
             },
             link: function(scope, element, attrs) {
-                console.log(scope.topic);
                 // Proactively fetch Id and redirect to visualizer on click
                 var directTo = function(topic) {
                     SearchService.getId(topic)
@@ -24,11 +23,13 @@
                             });
                         })
                         .catch(function(error) {
-                            console.log("The id was not returned");
+                            console.log("~~~~ Error: The id was not returned ~~~~");
                         });
                 };
 
-                element.bind('click', directTo(scope.topic))
+                element.bind('click', function(event) {
+                    directTo(scope.topic);
+                })
             }
         };
 

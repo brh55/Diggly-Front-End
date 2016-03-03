@@ -57,7 +57,7 @@
                                         }
                                     });
 
-                                $('.results').addClass('active');
+                                    $('.results').addClass('active');
                                 })
                                 .catch(function(error) {
                                     console.log('Error happened in AJAX Request!!');
