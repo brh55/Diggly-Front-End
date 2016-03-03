@@ -17,14 +17,17 @@
         var a = this.action = {
             getSearchSuggest: function(searchWord) {
                 return Restangular
-                    .getList("one", {
+                    // .../suggest
+                    .one('suggest')
+                    .get({
                         q: searchWord
                     });
             },
 
             getId: function(articleTitle) {
                 return Restangular
-                    .getList("getpageid", {
+                    .one('getpageid')
+                    .get({
                         q: articleTitle
                     });
             }

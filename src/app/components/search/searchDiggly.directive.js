@@ -7,11 +7,13 @@
         .directive('searchDiggly', searchDiggly);
 
     /** @ngInject */
-    function searchDiggly () {
+    function searchDiggly (SearchService) {
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/search/search.html',
             link: function(scope, element, attrs) {
+                scope.topics = [];
+
                 var searchResult_JSON;      // Search results recieved from ajax request and used to create the search result list
                 var debounceTimeout = 200;  // Global timeout for debouce.
                 var searchText = "";        // Search string the user typed
@@ -30,7 +32,6 @@
                             debounceTimeout = 200;
                         }
 
-                        $('.results').empty();
                         $('.results').removeClass('active');
 
                         searchText = $('.searchBar').val();
@@ -38,33 +39,29 @@
                         if (searchText !== "") {
                             var searchTextForQuery = searchText.replace(' ', '+');
                             /* Getting search result for the current search string in the search bar */
-                            $.ajax({
-                                url: "http://rack36.cs.drexel.edu/suggest/?q=" + searchTextForQuery,
-                                type: "GET",
-                                async: false,
-                                success: function (response) {
-                                    searchResult_JSON = JSON.parse(response);
-                                    console.log('recieved json:');
-                                    console.log(searchResult_JSON);
-                                },
-                                error: function (errorReport) {
+                            SearchService.getSearchSuggest(searchTextForQuery)
+                                .then(function(response) {
+                                    // clean and strip data
+                                    response = response.plain(response);
+                                    scope.topics.length = 0;
+
+                                    _.forEach(response, function(article) {
+                                        // defense check
+                                        if (!_.isEmpty(article)) {
+                                            var title = article.title.toLowerCase();
+                                            var searchText = searchTextForQuery.toLowerCase();
+
+                                            if (title.indexOf(searchText) >= 0) {
+                                                scope.topics.push(article)
+                                            }
+                                        }
+                                    });
+
+                                $('.results').addClass('active');
+                                })
+                                .catch(function(error) {
                                     console.log('Error happened in AJAX Request!!');
-                                }
-                            });
-
-                            if (searchResult_JSON) {
-                                var len = searchResult_JSON.length;     // Number of search results acquired
-                            }
-
-                            $('.results').addClass('active');
-                            for (var i = 0; i < len-1; i++) {
-                                var temp = searchResult_JSON[i].title;
-                                temp = searchResult_JSON[i].title.toLowerCase();
-                                var tempSearchText = searchText.toLowerCase();
-                                if(temp.indexOf(tempSearchText) >= 0 || searchResult_JSON[i].title.indexOf(tempSearchText) >= 0) {
-                                    $('.results').append('<li><a diggly-topic topic="' + searchResult_JSON[i].title + '">' + searchResult_JSON[i].title + '</a></li>');
-                                }
-                            }
+                                });
                         }
                     }
                 }, debounceTimeout));

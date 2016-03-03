@@ -1,5 +1,7 @@
 <div class="search-container center">
     <span class="fa fa-search"></span>
     <input type="text" placeholder="Search" class="searchBar">
-    <ul class="results"></ul>
+    <ul class="results">
+        <li ng-repeat="topic in topics" diggly-topic topic="topic.title">{{topic.title}}</li>
+    </ul>
 </div>
