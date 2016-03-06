@@ -43,9 +43,7 @@
                                 .then(function(response) {
                                     // clean and strip data
                                     response = response.plain(response);
-                                    console.log(response)
                                     scope.topics.length = 0;
-
 
                                     _.forEach(response, function(article) {
                                         // defense check
@@ -107,6 +105,8 @@
                     } else if (keyPressed === 13) {
                         selectedSearchString = $('.results .selected').text();
                         $('.searchBar').val(selectedSearchString);
+                        $('.results').removeClass('active');
+                        $('.results').empty();
 
                         /* Creating search event */
                         var searchEvent = $.Event("search");
@@ -118,6 +118,8 @@
                 $('body').on('click', '.results li', function(event) {
                     selectedSearchString = $(this).text();
                     $('.searchBar').val(selectedSearchString);
+                    $('.results').removeClass('active');
+                    $('.results').empty();
 
                     /* Creating search event */
                     var searchEvent = $.Event("search");
