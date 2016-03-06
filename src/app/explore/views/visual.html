@@ -1,41 +1,43 @@
-<div class="medium-9 small-12 columns">
-    <section class="visualizer card">
-        <diggly-visual class="visualizer-container" data="visual.model.data" on-click="visual.action.onClick(item)"></diggly-visual>
-    </section>
-</div>
-
-<div class="medium-3 small-12 columns">
-    <!-- Temporary for now -->
-    <div class="row">
-        <article class="small-12 columns card">
-            <h3>{{ visual.model.currentTopic.article_title }}</h3>
-
-            <div class="card-summary">
-                <p>{{ visual.model.currentTopic.summary }}</p>
-            </div>
-
-            <a ng-href="{{ visual.model.currentTopic.wiki_link }}" target="_blank">View on Wikipedia</a>
-        </article>
-
-        <article class="small-12 columns card">
-            <div class="visualizer-history-card">
-                <h2>History</h2>
-
-                <div class=""
-                <ul>
-                    <div ng-repeat="topic in visual.model.history">
-                        <h4>{{ topic.article_title}}</h4>
-                        <p>{{ topic.summary | limitTo: 40 }} ...</p>
-                        <a href="{{ topic.wiki_link }}" target="_blank">View it on Wikipedia</a>
-                        <a ng-click="visual.action.addBookmark(topic)">Add to Bookmark</a>
-                    </div>
-                </ul>
-            </div>
-        </article>
+<section class="visual">
+    <div class="medium-9 small-12 columns">
+        <section class="visualizer card">
+            <diggly-visual class="visualizer-container" data="visual.model.data" on-click="visual.action.onClick(item)"></diggly-visual>
+        </section>
     </div>
 
+    <div class="medium-3 small-12 columns">
+        <!-- Temporary for now -->
+        <div class="row">
+            <article class="small-12 columns card">
+                <div class="current-card">
+                    <h3>{{ visual.model.currentTopic.article_title }}</h3>
 
-</div>
+                    <div class="current-card__summary">
+                        <p>{{ visual.model.currentTopic.summary }}</p>
+                    </div>
+
+                    <a ng-href="{{ visual.model.currentTopic.wiki_link }}" target="_blank">View on Wikipedia</a>
+                </div>
+            </article>
+
+            <article class="small-12 columns card">
+                <div class="history-card">
+                    <h3>History</h3>
+
+                    <div class="history-card__list">
+                        <ul>
+                            <li ng-repeat="topic in visual.model.history">
+                                <a ui-sref="explore.visual({ id: topic.article_id })">{{ topic.article_title}}</a>
+                                <a href="{{ topic.wiki_link }}" target="_blank">WIKI></a>
+                                <a ng-click="visual.action.addBookmark(topic)">+</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
 
 
 
