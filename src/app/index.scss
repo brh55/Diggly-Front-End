@@ -2,7 +2,12 @@
  *  If you want to override some foundation settings, you have to change values here.
  *  The list of settings values are listed here bower_components/foundation/scss/foundation/_settings.scss
  */
-$topbar-bg-color: #5AADBB;
+$topbar-bg-color: transparent;
+$topbar-link-bg: transparent;
+$topbar-link-bg-active: transparent;
+$topbar-link-color-active: #909090;
+$topbar-link-color-active-hover: white;
+$topbar-link-bg-color-hover: white;
 
 /**
  *  Do not remove this comments bellow. It's the markers used by wiredep to inject
@@ -31,6 +36,7 @@ $topbar-bg-color: #5AADBB;
   }
 }
 
+@import 'styles/variables';
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

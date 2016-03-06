@@ -13,15 +13,27 @@
         </section>
     </nav>
 </div>
-<main>
+<main class="explore">
     <div class="row">
-        <div class="small-12 columns">
-            <h2>Explore</h2>
+        <nav class="top-bar">
+            <div class="top-bar-section">
+                <div class="left">
+                    <h2>Explore</h2>
+                </div>
 
-            <div class="explore-nav-wrap">
-                <explore-navigation></explore-navigation>
+                <ul class="right">
+                    <li ui-sref-active="active">
+                        <a ui-sref="explore.visual({ history: history })">Visual</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="explore.history({ history: history })">History</a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="explore.bookmark">Bookmark</a>
+                    </li>
+                </ul>
             </div>
-        </div>
+        </nav>
         <div class="small-12 columns">
             <div class="row">
                 <div ui-view></div>
