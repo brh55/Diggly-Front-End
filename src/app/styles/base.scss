@@ -28,3 +28,41 @@
         }
     }
 }
+
+.navigation {
+    background: $dark-purple;
+    padding: rem-calc(15px) 0 0 0;
+
+     .top-bar-section {
+        ul li,
+        li a {
+            font-size: rem-calc(15px);
+            background: transparent;
+            color: $inactive-purple;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 300;
+            line-height: 2.1;
+        }
+
+        li {
+            margin-top: -6px;
+
+            &:hover a,
+            &:hover a:hover {
+                background: transparent;
+                color: $dark-grey;
+            }
+
+            &.active {
+                border-bottom: 6px solid $teal;
+
+                a,
+                a:hover {
+                    background: transparent !important;
+                    color: $active-grey;
+                }
+            }
+        }
+    }
+}
