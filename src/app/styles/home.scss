@@ -71,10 +71,21 @@
             text-align: right;
             margin-bottom: 0;
         }
+
+        @media #{$small-only} {
+            margin-bottom: rem-calc(20px);
+        }
     }
 }
 
 .search-wrap {
     width: 75%;
     padding-bottom: 20px;
+}
+
+.quick-info {
+    @media #{$small-only} {
+        padding-left: rem-calc(15px);
+        padding-right: rem-calc(15px);
+    }
 }

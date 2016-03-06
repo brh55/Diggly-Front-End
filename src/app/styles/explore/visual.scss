@@ -55,15 +55,24 @@
         .add-bookmark {
             float: right;
         }
+    }
 
+    @media #{$small-only} {
+        .quick-info {
+            margin-top: rem-calc(18px);
+        }
     }
 }
 
 .visualizer {
     height: 100%;
-    width: 98%;
+    width: 100%;
     min-height: 500px;
     margin-left: -14px; // left to override foundation padding
+
+    @media #{$small-only} {
+        margin-left: 0;
+    }
 
     &-container {
         height: 100%;

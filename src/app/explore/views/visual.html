@@ -5,42 +5,40 @@
         </section>
     </div>
 
-    <div class="medium-3 small-12 columns">
-        <div class="row">
-            <article class="small-12 columns card">
-                <div class="current-card">
-                    <h3>{{ visual.model.currentTopic.article_title }}</h3>
+    <div class="medium-3 small-12 columns quick-info">
+        <article class="small-12 columns card">
+            <div class="current-card">
+                <h3>{{ visual.model.currentTopic.article_title }}</h3>
 
-                    <div class="current-card__summary">
-                        <p>{{ visual.model.currentTopic.summary }}</p>
-                    </div>
-
-                    <div class="current-card__btns">
-                        <a ng-href="{{ visual.model.currentTopic.wiki_link }}" target="_blank"><i class="material-icons">launch</i></a>
-
-                        <a class="add-bookmark" ng-click="visual.action.addBookmark(visual.model.currentTopic)"><i class="material-icons">add_circle_outline</i></a>
-                    </div>
+                <div class="current-card__summary">
+                    <p>{{ visual.model.currentTopic.summary }}</p>
                 </div>
-            </article>
 
-            <article class="small-12 columns card">
-                <div class="history-card">
-                    <h3>History</h3>
+                <div class="current-card__btns">
+                    <a ng-href="{{ visual.model.currentTopic.wiki_link }}" target="_blank"><i class="material-icons">launch</i></a>
 
-                    <div class="history-card__list">
-                        <ul>
-                            <li ng-repeat="topic in visual.model.history">
-                                <a ui-sref="explore.visual({ id: topic.article_id })">{{ topic.article_title}}</a>
-                                <div class="buttons">
-                                    <a href="{{ topic.wiki_link }}" target="_blank"><i class="material-icons">launch</i></a>
-                                    <a ng-click="visual.action.addBookmark(topic)"><i class="material-icons">add_circle_outline</i></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    <a class="add-bookmark" ng-click="visual.action.addBookmark(visual.model.currentTopic)"><i class="material-icons">add_circle_outline</i></a>
                 </div>
-            </article>
-        </div>
+            </div>
+        </article>
+
+        <article class="small-12 columns card">
+            <div class="history-card">
+                <h3>History</h3>
+
+                <div class="history-card__list">
+                    <ul>
+                        <li ng-repeat="topic in visual.model.history">
+                            <a ui-sref="explore.visual({ id: topic.article_id })">{{ topic.article_title}}</a>
+                            <div class="buttons">
+                                <a href="{{ topic.wiki_link }}" target="_blank"><i class="material-icons">launch</i></a>
+                                <a ng-click="visual.action.addBookmark(topic)"><i class="material-icons">add_circle_outline</i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </article>
     </div>
 </section>
 
