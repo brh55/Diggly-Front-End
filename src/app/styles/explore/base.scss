@@ -1,0 +1,38 @@
+// Base Explore
+.explore {
+    background: linear-gradient(to bottom, #fcfdff 0%,#e6e5ea 100%);
+
+    .top-bar {
+        border-bottom: 1px solid $subtle-grey;
+        margin-bottom: rem-calc(15px);
+        background: transparent;
+
+        // For now, will investigate why foundation settings aren't working
+        .top-bar-section {
+            ul li,
+            li a {
+                background: transparent;
+                color: $inactive-grey;
+                text-transform: uppercase;
+            }
+
+            li {
+                &:hover a,
+                &:hover a:hover {
+                    background: transparent;
+                    color: $dark-grey;
+                }
+
+                &.active a {
+                    background: transparent;
+                    color: $active-grey;
+                }
+            }
+
+        }
+    }
+
+    h2 {
+        color: $dark-grey; 
+    }
+}
