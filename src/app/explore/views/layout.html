@@ -1,19 +1,9 @@
-<div>
-    <nav class="top-bar row">
-        <ul class="title-area">
-            <li class="name">
-            <h1><a ui-sref="home">Diggly</a></h1>
-            </li>
-        </ul>
-
-        <section class="top-bar-section">
-        <ul class="right">
-            
-        </ul>
-        </section>
-    </nav>
-</div>
-<header class="navigation">
+<header class="app-header">
+    <div class="row">
+        <h1>diggly</h1>
+    </div>
+</header>
+<div class="navigation">
     <nav class="top-bar row">
         <div class="top-bar-section">
             <ul class="left">
@@ -30,7 +20,7 @@
             </div>
         </div>
     </nav>
-</header>
+</div>
 <main class="explore">
     <div class="row">
         <nav class="top-bar">
@@ -47,7 +37,7 @@
                         <a ui-sref="explore.history({ history: history })">History</a>
                     </li>
                     <li ui-sref-active="active">
-                        <a ui-sref="explore.bookmark">Bookmark</a>
+                        <a ui-sref="explore.bookmark">Bookmarks</a>
                     </li>
                 </ul>
             </div>
