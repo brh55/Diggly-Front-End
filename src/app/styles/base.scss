@@ -1,7 +1,7 @@
 // Base
 .card {
     background: white;
-    border-radius: 4px;
+    border-radius: 8px;
     box-shadow: 2px 4px 6px 1px rgba(0,0,0,.09);
     padding: rem-calc(20px);
 
@@ -74,5 +74,35 @@
         font-weight: 100;
         font-size: rem-calc(25px);
         letter-spacing: 2px;
+    }
+}
+
+input[type="text"] {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 0; // Wrap all input searches with padding container
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.45);
+    }
+
+    &:before {
+        @extend .material-icons;
+        content: "search";
+        color: black;
+    }
+
+    &:hover,
+    &:focus {
+        background: transparent;
+        border-bottom: 1px solid $orange;
+    }
+}
+
+.top-bar {
+    .results {
+        margin-top: 8.5px; // foundation positioning of top bar
     }
 }

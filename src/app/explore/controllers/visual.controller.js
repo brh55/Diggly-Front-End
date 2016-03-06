@@ -39,7 +39,14 @@
                     notify: false,
                     reload: false
                 });
-            });
+            })
+            .finally(function() {
+                // TODO: Wrap and find to move apply outside
+                m.history.unshift(m.currentTopic);
+                // Clean for any duplicates
+                m.history = _.uniq(m.history);
+                $window.__history__ = m.history;
+            })
         },
         /**
          * Add bookmark wrapper for the service

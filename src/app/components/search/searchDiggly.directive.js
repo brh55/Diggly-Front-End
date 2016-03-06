@@ -11,6 +11,23 @@
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/search/search.html',
+            controller: function ($state) {
+                var directTo = function(topic) {
+                    SearchService.getId(topic)
+                        .then(function(response) {
+                            $state.go('explore', {
+                                id: response.pageid
+                            });
+                        })
+                        .catch(function(error) {
+                            console.log("~~~~ Error: The id was not returned ~~~~");
+                        });
+                };
+
+                $('body').on('search', function (event) {
+                    directTo(event.searchString);
+                });
+            },
             link: function(scope, element, attrs) {
                 scope.topics = [];
 
@@ -106,7 +123,6 @@
                         selectedSearchString = $('.results .selected').text();
                         $('.searchBar').val(selectedSearchString);
                         $('.results').removeClass('active');
-                        $('.results').empty();
 
                         /* Creating search event */
                         var searchEvent = $.Event("search");
@@ -119,16 +135,12 @@
                     selectedSearchString = $(this).text();
                     $('.searchBar').val(selectedSearchString);
                     $('.results').removeClass('active');
-                    $('.results').empty();
 
                     /* Creating search event */
                     var searchEvent = $.Event("search");
                     searchEvent.searchString = selectedSearchString;    // Adding key searchString to search event
                     $('body').trigger(searchEvent);
                 });
-
-
-
             }
         };
 
