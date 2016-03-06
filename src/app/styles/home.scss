@@ -1,0 +1,54 @@
+// home
+.home {
+    header {
+        background: url('../assets/images/background.jpg');
+        background-size: cover;
+    }
+
+    h3 {
+        border-bottom: 1px solid $subtle-grey;
+        text-transform: uppercase;
+        color: $dark-grey;
+        font-size: rem-calc(17px);
+        margin-bottom: rem-calc(15px);
+        letter-spacing: 1px;
+        padding-bottom: rem-calc(5px);
+    }
+
+    .interest,
+    .recent {
+        padding: rem-calc(30px) 0;
+    }
+
+    .recent {
+        background: #fbfcfd;
+        background: -webkit-linear-gradient(#fbfcfd 0%, #eaeef7 100%);
+        background: -o-linear-gradient(#fbfcfd 0%, #eaeef7 100%);
+        background: linear-gradient(#fbfcfd 0%, #eaeef7 100%);
+    }
+
+    .interest {
+        background: -webkit-linear-gradient(#4b5e69 0%, #478985 100%);
+        background: -o-linear-gradient(#4b5e69 0%, #478985 100%);
+        background: linear-gradient(#4b5e69 0%, #478985 100%);
+
+        h3 {
+            border-bottom: 1px solid $dark-grey;
+        }
+    }
+
+    .card {
+        h4 {
+            color: $blue;
+            font-size: rem-calc(19px);
+            margin-bottom: rem-calc(17px);
+        }
+
+        p {
+            color: $darker-grey;
+            font-size: rem-calc(14px);
+            line-height: 1.6;
+        }
+    }
+}
+

@@ -1,0 +1,20 @@
+// History
+.history__card {
+    li {
+        padding: rem-calc(20px);
+    }
+
+    .option-wrap {
+        text-align: right;
+
+        .material-icons {
+            position: relative;
+            top: 6px;
+            margin-right: 5px;
+        }
+
+        a:first-child {
+            margin-right: 30px;
+        }
+    }
+}

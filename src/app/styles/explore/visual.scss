@@ -2,23 +2,60 @@
 
 .visual {
     .history-card {
+        &__list {
+            max-height: 100px;
+            overflow-y: scroll;
+        }
+        ul {
+            margin-left: 0;
+            border-top: 1px solid $subtle-grey;
+        }
+
         li {
             border-top: 1px solid $subtle-grey;
             border-bottom: 1px solid $subtle-grey;
             margin-top: -1px;
-            font-size: rem-calc(12px);
+            font-size: rem-calc(13px);
+            list-style-type: none;
+            padding: rem-calc(4px) rem-calc(9px);
+        }
+
+        .buttons {
+            text-align: right;
+
+            a:first-child {
+                margin-right: rem-calc(10px);
+            }
+        }
+
+        .material-icons {
+            font-size: rem-calc(19px);
         }
     }
 
     .current-card {
         &__summary {
-            height: rem-calc(300px);
+            height: rem-calc(200px);
             border: 1px solid $subtle-grey;
             overflow-y: scroll;
             padding: rem-calc(10px);
             padding-right: rem-calc(20px);
             border-radius: 4px;
+
+            p {
+                font-size: rem-calc(15px);
+                line-height: 1.35;
+            }
         }
+
+        &__btns {
+            margin-top: rem-calc(10px);
+        }
+
+        .add-bookmark {
+            float: right;
+        }
+
     }
 }
 
@@ -36,4 +73,19 @@
     svg {
         min-height: 500px;
     }
+
+    // labels
+    @for $i from 0 through 6{
+        .label-#{$i} {
+            font-weight: 100;
+            letter-spacing: 1px;
+            stroke: #353535;
+        }
+    }
+
+    .label-0 {
+        stroke: $dark-purple;
+        font-weight: 500;
+    }
 }
+

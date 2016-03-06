@@ -42,5 +42,20 @@
         h3 {
             font-size: rem-calc(20px);
         }
+
+        h2 {
+            font-weight: 400;
+            color: $blue;
+            display: inline-block;
+        }
+
+        .heading {
+            border-bottom: 1px solid $subtle-grey;
+            padding-bottom: rem-calc(10px);
+
+            .buttons {
+                float: right;
+            }
+        }
     }
 }
