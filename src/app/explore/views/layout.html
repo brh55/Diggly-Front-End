@@ -1,3 +1,31 @@
-<div class="container">
-    <div ui-view></div>
+<div>
+    <nav class="top-bar row">
+        <ul class="title-area">
+            <li class="name">
+            <h1><a ui-sref="home">Diggly</a></h1>
+            </li>
+        </ul>
+
+        <section class="top-bar-section">
+        <ul class="right">
+            
+        </ul>
+        </section>
+    </nav>
 </div>
+<main>
+    <div class="row">
+        <div class="small-12 columns">
+            <h2>Explore</h2>
+
+            <div class="explore-nav-wrap">
+                <explore-navigation></explore-navigation>
+            </div>
+        </div>
+        <div class="small-12 columns">
+            <div class="row">
+                <div ui-view></div>
+            </div>
+        </div>
+    </div>
+</main>
