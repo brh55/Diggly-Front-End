@@ -7,11 +7,11 @@
         .directive('searchDiggly', searchDiggly);
 
     /** @ngInject */
-    function searchDiggly (SearchService) {
+    function searchDiggly (SearchService, $state) {
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/search/search.html',
-            controller: function ($state) {
+            controller: function () {
                 var directTo = function(topic) {
                     SearchService.getId(topic)
                         .then(function(response) {
@@ -69,7 +69,7 @@
                                             var searchText = searchTextForQuery.toLowerCase();
 
                                             if (title.indexOf(searchText) >= 0) {
-                                                scope.topics.push(article)
+                                                scope.topics.push(article);
                                             }
                                         }
                                     });

@@ -9,7 +9,7 @@
   /** @ngInject */
   function runBlock($log) {
 
-    $log.debug('runBlock end');
+    $log.debug('Diggly is up and running, at your service!');
   }
 
   // UI-Router Temp Solution for Abstract Parents
