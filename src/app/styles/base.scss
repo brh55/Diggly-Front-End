@@ -5,27 +5,12 @@
     box-shadow: 2px 4px 6px 1px rgba(0,0,0,.09);
     padding: rem-calc(20px);
 
-    &:not(:last-child) {
-        margin-bottom: rem-calc(20px);
+    h3 {
+        color: $blue-grey;
     }
 
-    &-summary {
-        height: rem-calc(300px);
-        border: 1px solid black;
-        overflow-y: scroll;
-        padding: rem-calc(10px);
-        padding-right: rem-calc(20px);
-
-        ::-webkit-scrollbar {
-            -webkit-appearance: none;
-            width: 7px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 4px;
-            background-color: rgba(0,0,0,.5);
-            -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-        }
+    &:not(:last-child) {
+        margin-bottom: rem-calc(20px);
     }
 }
 

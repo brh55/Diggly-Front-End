@@ -1,5 +1,27 @@
 // Visual
 
+.visual {
+    .history-card {
+        li {
+            border-top: 1px solid $subtle-grey;
+            border-bottom: 1px solid $subtle-grey;
+            margin-top: -1px;
+            font-size: rem-calc(12px);
+        }
+    }
+
+    .current-card {
+        &__summary {
+            height: rem-calc(300px);
+            border: 1px solid $subtle-grey;
+            overflow-y: scroll;
+            padding: rem-calc(10px);
+            padding-right: rem-calc(20px);
+            border-radius: 4px;
+        }
+    }
+}
+
 .visualizer {
     height: 100%;
     width: 98%;
@@ -13,9 +35,5 @@
 
     svg {
         min-height: 500px;
-    }
-
-    &-card-history {
-
     }
 }

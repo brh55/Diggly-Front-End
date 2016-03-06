@@ -37,4 +37,10 @@
         color: $dark-grey;
         font-size: rem-calc(27px);
     }
+
+    .card {
+        h3 {
+            font-size: rem-calc(20px);
+        }
+    }
 }
