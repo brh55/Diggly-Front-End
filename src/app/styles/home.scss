@@ -24,14 +24,14 @@
         text-transform: uppercase;
         color: $dark-grey;
         font-size: rem-calc(17px);
-        margin-bottom: rem-calc(15px);
+        margin-bottom: rem-calc(18px);
         letter-spacing: 1px;
         padding-bottom: rem-calc(5px);
     }
 
     .interest,
     .recent {
-        padding: rem-calc(30px) 0;
+        padding: rem-calc(40px) 0 rem-calc(50px);
     }
 
     .recent {
@@ -53,10 +53,11 @@
 
     .card {
         padding-bottom: rem-calc(5px);
+        min-height: 249px;
 
         h4 {
             color: $blue;
-            font-size: rem-calc(19px);
+            font-size: rem-calc(16px);
             margin-bottom: rem-calc(17px);
             margin-top: rem-calc(10px);
         }
@@ -68,12 +69,19 @@
         }
 
         &-btn__container {
-            text-align: right;
-            margin-bottom: 0;
+            position: absolute;
+            bottom: 8px;
+            right: 28px;
+
+            @media #{$small-only} {
+                bottom: 26px;
+                right: 28px;
+            }
         }
 
         @media #{$small-only} {
             margin-bottom: rem-calc(20px);
+            min-height: 200px;
         }
     }
 }
