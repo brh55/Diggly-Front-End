@@ -1,7 +1,7 @@
 // Base
 .card {
     background: white;
-    border-radius: 4px;
+    border-radius: 8px;
     box-shadow: 2px 4px 6px 1px rgba(0,0,0,.09);
     padding: rem-calc(20px);
 
@@ -74,5 +74,26 @@
         font-weight: 100;
         font-size: rem-calc(25px);
         letter-spacing: 2px;
+    }
+}
+
+input[type="text"] {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75);
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.45);
+    }
+
+    &:before {
+        content: "/E8B6";
+    }
+
+    &:hover,
+    &:focus {
+        background: transparent;
+        border-bottom: 1px solid $orange;
     }
 }

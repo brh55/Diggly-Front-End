@@ -5,6 +5,20 @@
         background-size: cover;
     }
 
+    h1 {
+        margin-bottom: 30px;
+        margin-bottom: 10vh;
+        margin-top: rem-calc(20px);
+        color: rgba(255,255,255, 0.76);
+        font-size: rem-calc(18px);
+        font-weight: 100;
+        letter-spacing: 1px;
+    }
+
+    .search-bar {
+        margin-bottom: rem-calc(30px);
+    }
+
     h3 {
         border-bottom: 1px solid $subtle-grey;
         text-transform: uppercase;
@@ -38,16 +52,24 @@
     }
 
     .card {
+        padding-bottom: rem-calc(5px);
+
         h4 {
             color: $blue;
             font-size: rem-calc(19px);
             margin-bottom: rem-calc(17px);
+            margin-top: rem-calc(10px);
         }
 
         p {
             color: $darker-grey;
             font-size: rem-calc(14px);
             line-height: 1.6;
+        }
+
+        &-btn__container {
+            text-align: right;
+            margin-bottom: 0;
         }
     }
 }
