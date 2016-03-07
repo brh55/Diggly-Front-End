@@ -7,7 +7,7 @@
         .directive('searchDiggly', searchDiggly);
 
     /** @ngInject */
-    function searchDiggly (SearchService, $state) {
+    function searchDiggly (SearchService, $state, $log) {
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/search/search.html',
@@ -20,7 +20,7 @@
                             });
                         })
                         .catch(function(error) {
-                            console.log("~~~~ Error: The id was not returned ~~~~");
+                            $log.error("~~~~ Error: The id was not returned ~~~~");
                         });
                 };
 
@@ -29,8 +29,6 @@
                 });
             },
             link: function(scope, element, attrs) {
-                scope.topics = [];
-
                 var searchResult_JSON;      // Search results recieved from ajax request and used to create the search result list
                 var debounceTimeout = 200;  // Global timeout for debouce.
                 var searchText = "";        // Search string the user typed
@@ -58,21 +56,13 @@
                             /* Getting search result for the current search string in the search bar */
                             SearchService.getSearchSuggest(searchTextForQuery)
                                 .then(function(response) {
-                                    // clean and strip data
+                                    // Cleans restangular wrapper
                                     response = response.plain(response);
-                                    scope.topics.length = 0;
 
-                                    _.forEach(response, function(article) {
-                                        // defense check
-                                        if (!_.isEmpty(article)) {
-                                            var title = article.title.toLowerCase();
-                                            var searchText = searchTextForQuery.toLowerCase();
-
-                                            if (title.indexOf(searchText) >= 0) {
-                                                scope.topics.push(article);
-                                            }
-                                        }
-                                    });
+                                    // Cleans out the empty returned responses
+                                    scope.topics = _.filter(response, function(article) {
+                                                        return !_.isEmpty(article);
+                                                    });
 
                                     $('.results').addClass('active');
                                 })
@@ -114,7 +104,6 @@
                                 } else {
                                     $('.results li').eq( (selectedIndex - 1) ).addClass('selected');    // Select the new element
                                     selectedIndex = selectedIndex - 1;
-
                                 }
                                 selectedSearchResult = $('.results .selected');
                             }
