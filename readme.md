@@ -5,12 +5,15 @@
 [![Drexel Senior Design](https://img.shields.io/badge/Drexel%20University-Senior%20Design-FFC600.svg?style=flat-square)](http://www.cci.drexel.edu/SeniorDesign/2015_2016/Diggly/Diggly.html)
 
 #### Scrumboard: [![Stories in Ready](https://badge.waffle.io/WikiDiggly/Diggly.svg?label=ready&title=Ready to Do - Task)](http://waffle.io/WikiDiggly/Diggly)
+
 Diggly creates smart data extraction and visualization of the knowledge contained in the Wikipedia encyclopedia. Diggly leverages 3 distinguishing characteristics of the Wikipedia encyclopedia to transform the way that a user consumes and interacts with the information. These defining characteristics are:
 - The vastness of the Wikipedia encyclopedia
 - Availability of structured information (infobox and categorization)
 - Inherently linked nature of Wikipedia articles (through categorization, outbound links to other articles and ‘See also’ section of each article)
 
 Diggly is a visual Wikipedia explorer representing information from Wikipedia using graphs and simplified information, with little text. With Diggly, the innate ‘free-flow text’ characteristic of Wikipedia encyclopedia becomes a last resort. Instead, users of Diggly will be presented with the same information as Wikipedia and the powerful capacity to navigate related topics through condensed, easily consumed and aesthetically pleasing user interactions. This intuitive linked information is represented visually through graphs and other natural models of linked-data visualization.
+
+![Diggly Screenshot](https://cloud.githubusercontent.com/assets/6020066/13560360/27f55e4a-e3ec-11e5-81ca-47b3cd6d704e.png)
 
 ## Front-End Set Up
 1. Install all dependencies
