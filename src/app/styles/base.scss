@@ -83,6 +83,7 @@ input[type="text"] {
     border-bottom: 1px solid rgba(255, 255, 255, 0.65);
     color: rgba(255, 255, 255, 0.65);
     margin-bottom: 0; // Wrap all input searches with padding container
+    box-shadow: none;
 
     &::placeholder {
         color: rgba(255, 255, 255, 0.45);
