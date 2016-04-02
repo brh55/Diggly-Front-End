@@ -1,5 +1,8 @@
 // History
-.history__card {
+.history__card,
+.bookmarks__card {
+    min-height: 400px;
+
     li {
         padding: rem-calc(20px);
     }
@@ -18,3 +21,4 @@
         }
     }
 }
+

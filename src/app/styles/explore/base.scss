@@ -55,6 +55,10 @@
 
             .buttons {
                 float: right;
+
+                i {
+                    color: $blue;
+                }
             }
         }
     }
