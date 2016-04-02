@@ -1,10 +1,39 @@
-<a ng-click="bookmarks.action.clearBookmarks()">Clear Bookmarks</a>
-    <ul>
-        <div ng-repeat="bookmark in bookmarks.model.bookmarks">
-            <h4>{{ bookmark.article_title}}</h4>
-            <p>{{ bookmark.summary | limitTo: 300 }} ...</p>
-            <a href="{{ bookmark.wiki_link }}" target="_blank">View it on Wikipedia</a> | <a ng-click="bookmarks.action.removeItem(topic)">Remove Bookmark</a>
-            <hr>
+<section class="bookmarks">
+    <article class="medium-8 small-12 columns card bookmarks__card">
+        <div class="heading">
+            <h2>Saved Bookmarks</h2>
+
+            <div class="buttons">
+                <a ng-click="bookmarks.action.clearBookmarks()"><i class="material-icons">delete_sweep</i></a>
+            </div>
         </div>
-    </ul>
-</div>
+        <ul>
+            <li ng-repeat="bookmark in bookmarks.model.bookmarks">
+                <h4>{{ bookmark.article_title}}</h4>
+                <p>{{ bookmark.summary | limitTo: 1000 }} ...</p>
+
+                <div class="option-wrap">
+                    <a href="{{ bookmark.wiki_link }}" target="_blank"><i class="material-icons">launch</i>Go to Wikipedia</a>
+
+                    <a ng-click="bookmarks.action.removeItem(bookmark)"><i class="material-icons">remove_circle_outline</i>Remove Item</a>
+                </div>
+            </li>
+        </ul>
+    </article>
+
+    <div class="medium-4 small-12 columns export">
+        <article ng-cloak class="small-12 columns card">
+            <div class="export__card">
+                <h3>Export</h3>
+
+                <div class="export__summary">
+                    <p>Export to an external file to save on your local computer.</p>
+                </div>
+
+                <div class="export__btns">
+                    <button ng-click="" class="export__btn">Export</button>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>

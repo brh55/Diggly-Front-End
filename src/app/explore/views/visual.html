@@ -1,11 +1,11 @@
 <section class="visual">
-    <div class="medium-9 small-12 columns">
+    <div class="medium-8 small-12 columns">
         <section ng-cloak class="visualizer card">
             <diggly-visual class="visualizer-container" data="visual.model.data" on-click="visual.action.onClick(item)"></diggly-visual>
         </section>
     </div>
 
-    <div class="medium-3 small-12 columns quick-info">
+    <div class="medium-4 small-12 columns quick-info">
         <article ng-cloak class="small-12 columns card">
             <div class="current-card">
                 <h3>{{ visual.model.currentTopic.article_title }}</h3>
@@ -17,7 +17,7 @@
                 <div class="current-card__btns">
                     <a ng-href="{{ visual.model.currentTopic.wiki_link }}" target="_blank"><i class="material-icons">launch</i></a>
 
-                    <a class="add-bookmark" ng-click="visual.action.addBookmark(visual.model.currentTopic)"><i class="material-icons">add_circle_outline</i></a>
+                    <a class="add-bookmark" ng-click="visual.action.addBookmark(visual.model.currentTopic)"><i class="material-icons">bookmark_border</i></a>
                 </div>
             </div>
         </article>
@@ -32,7 +32,7 @@
                             <a ui-sref="explore.visual({ id: topic.article_id })">{{ topic.article_title}}</a>
                             <div class="buttons">
                                 <a href="{{ topic.wiki_link }}" target="_blank"><i class="material-icons">launch</i></a>
-                                <a ng-click="visual.action.addBookmark(topic)"><i class="material-icons">add_circle_outline</i></a>
+                                <a ng-click="visual.action.addBookmark(topic)"><i class="material-icons">bookmark_border</i></a>
                             </div>
                         </li>
                     </ul>

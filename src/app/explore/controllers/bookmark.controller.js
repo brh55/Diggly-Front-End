@@ -18,6 +18,7 @@
              * @return {void}
              */
             removeItem: function(currentItem) {
+                console.log(currentItem);
                 ExploreService.removeBookmarkItem(currentItem);
             },
 

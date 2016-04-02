@@ -31,7 +31,7 @@
              */
             removeHistoryItem: function (item) {
                 _.remove($window.__history__, function(currentHistory) {
-                    return currentHistory === item;
+                    return currentHistory.article_id === item.article_id;
                 });
             },
             // TODO: Can abstract this into one function to take two params like such:
@@ -42,12 +42,12 @@
              * @return {void}
              */
             removeBookmarkItem: function (item) {
-                _.remove($window.__bookmark__, function(currentBookmark) {
-                    return currentBookmark === item;
+                _.remove($window.__bookmarks__, function(currentBookmark) {
+                    return currentBookmark.article_id === item.article_id;
                 });
             },
             /**
-             * Adds bookmark to bookmar array
+             * Adds bookmark to bookmark array
              * @param {object} item item to be bookmarked
              */
             addBookmark: function(item) {
