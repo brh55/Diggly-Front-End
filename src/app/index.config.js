@@ -6,7 +6,10 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastr) {
+  function config($logProvider, toastr, $compileProvider ) {
+    // Whitelist Blobs
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|blob):/);
+
     // Enable log
     $logProvider.debugEnabled(true);
 
