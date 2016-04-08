@@ -54,7 +54,8 @@
 
                     default:
                     case "text":
-                        m.downloadUrl = a.exportText("kekeke");
+                        var text = JSON.stringify($window.__bookmarks__);
+                        m.downloadUrl = a.exportText(text);
                         break;
                 }
             },

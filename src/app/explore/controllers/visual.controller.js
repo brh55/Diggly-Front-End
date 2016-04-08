@@ -60,6 +60,8 @@
         onClick: function(item) {
             a.updateHistory();
             a.fetchTopic(item);
+            // Sukrit, you can switch this to a jQuery event if you please.
+            $('body').trigger("D3:Click", item);
         },
         init: function () {
             if ($state.params.id) a.fetchTopic($state.params.id);
