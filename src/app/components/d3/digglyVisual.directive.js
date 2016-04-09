@@ -44,8 +44,8 @@
 
             // Watches for scope.data change, and renders the SVG
             scope.$watch('data', function(newVal, oldVal) {
-              scope.render(newVal);
-            }, true);
+              if (oldVal !== newVal) scope.render(newVal);
+            }, false);
 
             scope.render = function (data) {
               // Clear out SVGs first
@@ -101,9 +101,6 @@
                 .style('fill', function(d, i) {
                   return colors(i);
                 })
-                .style('cursor', function(d, i) {
-                  return (i === 0) ? 'move' : 'pointer';
-                })
                 .call(force.drag)
                 .on('click', function(d, i) {
                   if (i !== 0) {
@@ -128,6 +125,12 @@
                     return 'label-' + i;
                   },
                   'stroke': 'black'
+                })
+                .on('click', function(d, i) {
+                  if (i !== 0) {
+                    var selectedId = d.target_id;
+                    scope.onClick({item: selectedId})
+                  }
                 })
                 .text(function(d) {
                   return d.title;
