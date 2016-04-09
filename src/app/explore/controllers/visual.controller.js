@@ -18,12 +18,12 @@
 
     var a = this.action = {
         updateHistory: function() {
-            $scope.$apply(function() {
-                m.history.unshift(m.currentTopic);
-                // Clean for any duplicates
-                m.history = _.uniq(m.history);
-                $window.__history__ = m.history;
+            var indexInHistory = _.findIndex(m.history, function(o) {
+                return o.article_id === m.currentTopic.article_id
             });
+
+            if (indexInHistory === -1) m.history.unshift(m.currentTopic);
+            $window.__history__ = m.history;
         },
         fetchTopic: function(id) {
             DigglyService.getRelevantTopics(id).then(function(response) {
@@ -41,11 +41,7 @@
                 });
             })
             .finally(function() {
-                // TODO: Wrap and find to move apply outside
-                m.history.unshift(m.currentTopic);
-                // Clean for any duplicates
-                m.history = _.uniq(m.history);
-                $window.__history__ = m.history;
+                a.updateHistory();
             })
         },
         /**
