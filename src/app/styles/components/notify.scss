@@ -12,8 +12,11 @@
     padding: rem-calc(15px);
     transition: margin-top 1s ease, opacity .5s ease-in;
 
-    &__message {
-
+    p {
+        font-size: rem-calc(17px);
+        color: #6E8C4A;
+        margin-bottom: 0;
+        padding: rem-calc(10px) 0;
     }
 
     &.show {
@@ -26,5 +29,9 @@
 
     &.error {
         background: $red;
+
+        p {
+            color: #B15555;
+        }
     }
 }

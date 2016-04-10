@@ -82,7 +82,7 @@
                 .nodes(m.d3Data.nodes)
                 .links(m.d3Data.edges)
                 // not sure why there is an offset on height?
-                .size([baseWidth, baseHeight + 10])
+                .size([baseWidth, baseHeight])
                 .linkDistance(130)
                 .charge([-500])
                 .theta(0.1)

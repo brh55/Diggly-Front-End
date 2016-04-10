@@ -23,7 +23,7 @@
           }, 2500);
         });
       },
-      template: '<div class="notify__message" ng-class="{show: state, error: exists}">{{ message }}</div>'
+      template: '<div class="notify__message" ng-class="{show: state, error: exists}"><p ng-bind="message"></p></div>'
     };
 
     return directive;

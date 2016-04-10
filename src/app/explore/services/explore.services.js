@@ -62,13 +62,8 @@
                     $rootScope.$emit("notify:service", item.article_title + " has been added to your bookmarks.", false);
                     $window.__bookmarks__.push(item);
                 } else {
-                    $rootScope.$emit("notify:service", item.article_title + " already exists.", true);
+                    $rootScope.$emit("notify:service", item.article_title + " already exists in your bookmarks.", true);
                 }
-
-                // // If it's unique ==> Push
-                // if (_.findIndex(bookmarks, check) === -1) {
-                //     $window.__bookmarks__.push(item);
-                // }
             },
 
             /**
