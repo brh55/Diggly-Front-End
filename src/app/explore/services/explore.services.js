@@ -73,7 +73,9 @@
              * @return {array} array of history items
              */
             getHistory: function () {
-                if (!$window.__history__) $window.__history__ = [];
+                if (!$window.__history__) {
+                    $window.__history__ = [];
+                }
                 return $window.__history__;
             },
 
@@ -82,7 +84,9 @@
              * @return {array} array of bookmark items
              */
             getBookmarks: function () {
-                if (!$window.__bookmarks__) $window.__bookmarks__ = [];
+                if (!$window.__bookmarks__) {
+                    $window.__bookmarks__ = [];
+                }
                 return $window.__bookmarks__;
             }
         };
@@ -95,7 +99,7 @@
             getHistory: actions.getHistory,
             addBookmark: actions.addBookmark,
             getBookmarks: actions.getBookmarks
-        }
+        };
     }
 
 })();

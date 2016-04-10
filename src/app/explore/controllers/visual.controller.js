@@ -25,10 +25,13 @@
          */
         updateHistory: function() {
             var indexInHistory = _.findIndex(m.history, function(o) {
-                return o.article_id === m.currentTopic.article_id
+                return o.article_id === m.currentTopic.article_id;
             });
 
-            if (indexInHistory === -1) m.history.unshift(m.currentTopic);
+            if (indexInHistory === -1) {
+                m.history.unshift(m.currentTopic);
+            }
+
             $window.__history__ = m.history;
         },
         /**
@@ -57,7 +60,7 @@
             })
             .finally(function() {
                 a.updateHistory();
-            })
+            });
         },
         /**
          * Add bookmark wrapper for the service
@@ -77,14 +80,16 @@
         },
 
         init: function () {
-            if ($state.params.id) a.fetchTopic($state.params.id);
+            if ($state.params.id) {
+                a.fetchTopic($state.params.id);
+            }
 
             // Use services for scalability
             m.history = ExploreService.getHistory() || [];
             // Initialize bookmark or get them;
             $window.__bookmarks__ = ExploreService.getBookmarks() || [];
         }
-    }
+    };
 
     a.init();
   }
