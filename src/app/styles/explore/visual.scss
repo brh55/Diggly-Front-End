@@ -92,7 +92,7 @@
 
     @media #{$small-only} {
         margin-left: 0;
-        min-height: 500px;
+        min-height: 437px;
     }
 
     @media #{$medium-up} {
@@ -109,6 +109,10 @@
     svg {
         height: 100%;
         min-height: 600px;
+
+        @media #{$small-only} {
+            min-height: 437px;
+        }
     }
 
     // labels
