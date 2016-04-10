@@ -6,7 +6,7 @@
         .controller('BookmarkController', BookmarkController);
 
     /** @ngInject */
-    function BookmarkController(ExploreService, $window, $scope) {
+    function BookmarkController(ExploreService, $window) {
         var m = this.model = {
             bookmarks: [],
             exportType: "txt",
@@ -49,11 +49,12 @@
              */
             export: function() {
                 var bookmarks = a.normalize();
+                var parsedJSON;
 
                 switch(m.exportType) {
                     case "csv":
                         // create parsed JSON
-                        var parsedJSON = _.map(bookmarks, function (article) {
+                        parsedJSON = _.map(bookmarks, function (article) {
                             var parsedObj =  _.mapValues(article, function(value) {
                                 // Iterate through all values and parse with a encoded quote to replaced during CSV
                                return _(value).toString().replace(/\"/g, '%22');
@@ -66,7 +67,7 @@
 
                     default:
                     case "txt":
-                        var parsedJSON = _.map(bookmarks, function (article) {
+                        parsedJSON = _.map(bookmarks, function (article) {
                             var parsedObj =  _.mapValues(article, function(value) {
                                 // Iterate through all values, replace all backslash with encoding
                                 // to designate new line and replace all intended quotes and commas
@@ -154,14 +155,17 @@
              */
             convertoCsv: function (JSONData, ShowLabel) {
                 //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
-                var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+                var arrData = typeof JSONData !== 'object' ? JSON.parse(JSONData) : JSONData;
                 var CSV = '';
+                var row = "";
+                var index;
+
                 //This condition will generate the Label/Header
                 if (ShowLabel) {
-                    var row = "";
+                    row = "";
 
                     //This loop will extract the label from 1st index of on array
-                    for (var index in arrData[0]) {
+                    for (index in arrData[0]) {
                         //Now convert each value to string and comma-seprated
                         row += index + ',';
                     }
@@ -172,10 +176,10 @@
 
                 //1st loop is to extract each row
                 for (var i = 0; i < arrData.length; i++) {
-                    var row = "";
+                    row = "";
                     // 2nd loop will extract each column and convert it in string comma-seprated
                     // Need to add quotes to prevent being seperated by content commas.
-                    for (var index in arrData[i]) {
+                    for (index in arrData[i]) {
                         row += '"' + arrData[i][index] + '",';
                     }
                     row.slice(0, row.length - 1);

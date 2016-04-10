@@ -13,7 +13,7 @@
         data: '=',
         onClick: '&'
       },
-      link: function(scope, element, attrs) {
+      link: function(scope, element) {
         var m = scope.model = {
           d3Data: {
             nodes: '',
@@ -22,8 +22,6 @@
         };
 
         d3Service.d3().then(function(d3) {
-            var currentWidth = angular.element($window)[0].innerWidth;
-
             // D3 Code here after it's been loaded dynamically
             var svg = d3.select(element[0])
               .append('svg')
@@ -35,17 +33,6 @@
             $window.onresize = function() {
               scope.$apply();
             };
-
-            // scope.setResponsive = function () {
-            //   if (currentWidth < 420) {
-            //       linkDistance = MATH.round(baseWidth/4);
-            //   } else if (currentWidth < 1024 && currentWidth > 420) {
-            //       console.log('medium');
-            //   } else if (currentWidth > 1024) {
-            //       console.log('large');
-            //   }
-            // };
-
 
             // Watches for resizing and rerenders datas
             scope.$watch(function(){
@@ -79,7 +66,9 @@
               svg.selectAll('*').remove();
 
               // When nothing exist, return
-              if (!data) return;
+              if (!data) {
+                return;
+              }
 
               // Set up Data
               m.d3Data.nodes = createNodeData(data);
@@ -108,7 +97,9 @@
                 .data(m.d3Data.edges)
                 .enter()
                 .append('line')
-                .attr('id',function(d,i) { return 'edge' + i })
+                .attr('id', function(d,i) {
+                  return 'edge' + i;
+                })
                 .attr('marker-end','url(#marker_circle)')
                 .style('stroke','#ccc')
                 .style('pointer-events', 'none');
@@ -119,8 +110,8 @@
                 .enter()
                 .append('circle')
                 .attr({
-                  'r': function(d, i) {
-                      return d.score * 40 // TODO: Find a better number or dynamic number based on sizing
+                  'r': function(d) {
+                      return d.score * 40; // TODO: Find a better number or dynamic number based on sizing
                   },
                   'class': function(d, i) {
                       return 'node-' + i;
@@ -133,7 +124,7 @@
                 .on('click', function(d, i) {
                   if (i !== 0) {
                     var selectedId = d.target_id;
-                    scope.onClick({item: selectedId})
+                    scope.onClick({item: selectedId});
                   }
                 });
 
@@ -158,7 +149,7 @@
                 .on('click', function(d, i) {
                   if (i !== 0) {
                     var selectedId = d.target_id;
-                    scope.onClick({item: selectedId})
+                    scope.onClick({item: selectedId});
                   }
                 })
                 .text(function(d) {
@@ -205,9 +196,9 @@
               edgelabels
                 .append('textPath')
                 .attr('xlink:href',function(d,i) {
-                  return '#edgepath'+i
+                  return '#edgepath' + i;
                 })
-                .style("pointer-events", "none")
+                .style("pointer-events", "none");
 
               svg
                 .append('defs')
@@ -231,16 +222,16 @@
               var tick = function () {
                 edges
                   .attr({
-                    "x1": function(d){return d.source.x;},
-                    "y1": function(d){return d.source.y;},
-                    "x2": function(d){return d.target.x;},
-                    "y2": function(d){return d.target.y;}
+                    "x1": function(d) { return d.source.x; },
+                    "y1": function(d) { return d.source.y; },
+                    "x2": function(d) { return d.target.x; },
+                    "y2": function(d) { return d.target.y; }
                   });
 
                 nodes
                   .attr({
-                    "cx": function (d) { return d.x },
-                    "cy": function (d) { return d.y }
+                    "cx": function(d) { return d.x; },
+                    "cy": function(d) { return d.y; }
                   });
 
                 nodelabels
@@ -250,12 +241,12 @@
                 edgepaths
                   .attr('d', function(d) {
                     var path='M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
-                    return path
+                    return path;
                   });
               };
 
               force.on("tick", tick);
-              } // End of Scope Render
+            }; // End of Scope Render
         });
       }
     };
@@ -300,10 +291,6 @@
       });
 
       return edges;
-    }
-
-    var createIndexLabel = function (data, index, label) {
-      return label + i
     };
 
     return directive;

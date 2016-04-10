@@ -10,7 +10,7 @@
     var directive = {
       restrict: 'EA',
       scope: {},
-      link: function (scope, element, attrs) {
+      link: function (scope) {
         scope.state = false;
 
         $rootScope.$on('notify:service', function (event, message, exists) {
