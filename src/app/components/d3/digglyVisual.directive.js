@@ -39,13 +39,27 @@
             scope.$watch(function(){
               return angular.element($window)[0].innerWidth;
             }, function() {
-              scope.render(scope.data);
-            })
+              if (angular.element($window)[0].innerWidth < 1024) {
+                scope.updateDim();
+              }
+            });
 
             // Watches for scope.data change, and renders the SVG
             scope.$watch('data', function(newVal, oldVal) {
-              if (oldVal !== newVal) scope.render(newVal);
+              if (oldVal !== newVal) {
+                scope.render(newVal);
+              }
             }, false);
+
+
+            var baseHeight = $('.visualizer').height();
+            var baseWidth = $('.visualizer').width();
+
+            scope.updateDim = _.debounce(function () {
+              baseWidth = $('.visualizer').width();
+              baseHeight = $('.visualizer').height();
+              scope.render(scope.data);
+            }, 300);
 
             scope.render = function (data) {
               // Clear out SVGs first
@@ -67,7 +81,8 @@
                 .force()
                 .nodes(m.d3Data.nodes)
                 .links(m.d3Data.edges)
-                .size([500, 500])
+                // not sure why there is an offset on height?
+                .size([baseWidth, baseHeight + 10])
                 .linkDistance(130)
                 .charge([-500])
                 .theta(0.1)
@@ -108,6 +123,7 @@
                     scope.onClick({item: selectedId})
                   }
                 });
+
 
               var nodelabels = svg
                 .selectAll('.nodelabel')
@@ -225,8 +241,7 @@
                   });
               };
 
-              force.on("tick", tick)
-
+              force.on("tick", tick);
               } // End of Scope Render
         });
       }
