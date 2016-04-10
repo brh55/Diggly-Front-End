@@ -4,16 +4,18 @@
     &__card {
 
         h3 {
-            padding-bottom: 5px;
+            padding-bottom: rem-calc(5px);
             border-bottom: 1px solid $subtle-grey;
         }
 
         p {
-            padding: 10px;
+            padding: rem-calc(10px);
         }
     }
 
     &__btns {
+        border-top: 1px solid $subtle-grey;
+        padding: rem-calc(20px) 0;
         text-align: right;
     }
 
@@ -32,6 +34,12 @@
         &:active {
             border-color: none;
         }
+    }
+
+    input {
+        border: 1px solid $dark-grey;
+        color: $black;
+        margin-bottom: rem-calc(10px);
     }
 
 }
