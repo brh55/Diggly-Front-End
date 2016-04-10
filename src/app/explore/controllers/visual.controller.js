@@ -13,6 +13,8 @@
         data: ''
     };
 
+    $scope.loading = false;
+
     // Should be a better way to pass around to other views
     $scope.history = m.history;
 
@@ -26,6 +28,8 @@
             $window.__history__ = m.history;
         },
         fetchTopic: function(id) {
+            $scope.loading = true;
+
             DigglyService.getRelevantTopics(id).then(function(response) {
                 // Strip restangular objects and keep data clean
                 m.data = response.plain(response);
@@ -39,6 +43,8 @@
                     notify: false,
                     reload: false
                 });
+
+                $scope.loading = false;
             })
             .finally(function() {
                 a.updateHistory();
