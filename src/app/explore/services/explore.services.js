@@ -15,6 +15,7 @@
             clearHistory: function () {
                 var arrayLen = $window.__history__.length;
                 $window.__history__ = _.drop($window.__history__, arrayLen);
+                $rootScope.$emit("notify:service", "History cleared.", true);
             },
             /**
              * Clear bookmarks in window object
@@ -23,6 +24,7 @@
             clearBookmarks: function () {
                 var arrayLen = $window.__bookmarks__.length;
                 $window.__bookmarks__ = _.drop($window.__history__, arrayLen);
+                $rootScope.$emit("notify:service", "Bookmarks cleared.", true);
             },
             /**
              * Removes a bookmark item from the bookmark list
@@ -71,6 +73,7 @@
              * @return {array} array of history items
              */
             getHistory: function () {
+                if (!$window.__history__) $window.__history__ = [];
                 return $window.__history__;
             },
 
@@ -79,6 +82,7 @@
              * @return {array} array of bookmark items
              */
             getBookmarks: function () {
+                if (!$window.__bookmarks__) $window.__bookmarks__ = [];
                 return $window.__bookmarks__;
             }
         };

@@ -38,9 +38,9 @@
              * Wrapper to clear bookmarks
              * @return {void}
              */
-            clearBookmark: function() {
+            clearBookmarks: function() {
                 ExploreService.clearBookmarks();
-                m.bookmark.length = 0;
+                m.bookmarks.length = 0;
             },
 
             /**
@@ -92,13 +92,15 @@
                                             .replace(/\[/g, '')
                                             .replace(/\]/g, '');
 
-                        console.log(parseText);
-
                         m.downloadUrl = a.exportTo("txt", parseText);
                         break;
                 }
             },
 
+            /**
+             * Normalize bookmark collection to readable columns
+             * @return {array} array of normalized bookmarks
+             */
             normalize: function () {
                 var normalizedBookmarks = _.map($window.__bookmarks__, function (article) {
                     var tempObj = {
@@ -114,6 +116,7 @@
 
                 return normalizedBookmarks;
             },
+
             /**
              * Exports a Text file by creating a text blob
              * @param  {string} text The string in the text file
@@ -142,8 +145,14 @@
                 return fileUrl;
             },
 
-            // REF: http://stackoverflow.com/questions/8847766/how-to-convert-json-to-csv-format-and-store-in-a-variable
-            convertoCsv: function (JSONData, ReportTitle, ShowLabel) {
+            /**
+             * Modified function to convert CSV and escapes properly
+             * REF0: http://stackoverflow.com/questions/8847766/how-to-convert-json-to-csv-format-and-store-in-a-variable
+             * @param  {object} JSONData    JSON object
+             * @param  {bool} ShowLabel   Display column heading
+             * @return {string}             a CSV of the JSON object
+             */
+            convertoCsv: function (JSONData, ShowLabel) {
                 //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
                 var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
                 var CSV = '';

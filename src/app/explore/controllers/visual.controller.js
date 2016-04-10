@@ -19,6 +19,10 @@
     $scope.history = m.history;
 
     var a = this.action = {
+        /**
+         * Updates the history only if it's unique
+         * @return {[type]} [description]
+         */
         updateHistory: function() {
             var indexInHistory = _.findIndex(m.history, function(o) {
                 return o.article_id === m.currentTopic.article_id
@@ -27,6 +31,11 @@
             if (indexInHistory === -1) m.history.unshift(m.currentTopic);
             $window.__history__ = m.history;
         },
+        /**
+         * Retrieves a Diggly topic and update the routes
+         * @param  {number} id Wikipedia ID
+         * @return {void}
+         */
         fetchTopic: function(id) {
             $scope.loading = true;
 
@@ -59,12 +68,14 @@
         addBookmark: function (item) {
             ExploreService.addBookmark(item);
         },
+
         onClick: function(item) {
             a.updateHistory();
             a.fetchTopic(item);
             // Sukrit, you can switch this to a jQuery event if you please.
             $('body').trigger("D3:Click", item);
         },
+
         init: function () {
             if ($state.params.id) a.fetchTopic($state.params.id);
 

@@ -3,6 +3,11 @@
 .bookmarks__card {
     min-height: 400px;
 
+    ul {
+        max-height: 550px;
+        overflow-y: scroll;
+    }
+
     li {
         padding: rem-calc(20px);
     }
