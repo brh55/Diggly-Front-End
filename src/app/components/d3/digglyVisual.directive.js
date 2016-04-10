@@ -22,6 +22,7 @@
         };
 
         d3Service.d3().then(function(d3) {
+            var currentWidth = angular.element($window)[0].innerWidth;
 
             // D3 Code here after it's been loaded dynamically
             var svg = d3.select(element[0])
@@ -34,6 +35,17 @@
             $window.onresize = function() {
               scope.$apply();
             };
+
+            // scope.setResponsive = function () {
+            //   if (currentWidth < 420) {
+            //       linkDistance = MATH.round(baseWidth/4);
+            //   } else if (currentWidth < 1024 && currentWidth > 420) {
+            //       console.log('medium');
+            //   } else if (currentWidth > 1024) {
+            //       console.log('large');
+            //   }
+            // };
+
 
             // Watches for resizing and rerenders datas
             scope.$watch(function(){
@@ -51,13 +63,14 @@
               }
             }, false);
 
-
             var baseHeight = $('.visualizer').height();
             var baseWidth = $('.visualizer').width();
+            var linkDistance = Math.round(baseWidth / 4);
 
             scope.updateDim = _.debounce(function () {
               baseWidth = $('.visualizer').width();
               baseHeight = $('.visualizer').height();
+              linkDistance = Math.round(baseWidth / 4);
               scope.render(scope.data);
             }, 300);
 
@@ -83,7 +96,7 @@
                 .links(m.d3Data.edges)
                 // not sure why there is an offset on height?
                 .size([baseWidth, baseHeight])
-                .linkDistance(130)
+                .linkDistance(linkDistance)
                 .charge([-500])
                 .theta(0.1)
                 .gravity(0.05)
