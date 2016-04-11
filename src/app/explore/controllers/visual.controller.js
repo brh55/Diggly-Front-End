@@ -72,6 +72,15 @@
             ExploreService.addBookmark(item);
         },
 
+        /**
+         * Wrapper for clear history service
+         * @return {void}
+         */
+        clearHistory: function () {
+            ExploreService.clearHistory();
+            m.history.length = 0;
+        },
+
         onClick: function(item) {
             a.updateHistory();
             a.fetchTopic(item);

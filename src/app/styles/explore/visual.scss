@@ -3,8 +3,11 @@
 .visual {
     .history-card {
         &__list {
-            max-height: 128px;
+            height: 152px;
             overflow-y: scroll;
+            border: 1px solid $subtle-grey;
+            border-radius: 4px;
+            margin-bottom: 10px;
         }
         ul {
             margin-left: 0;
@@ -25,6 +28,10 @@
 
             a:first-child {
                 margin-right: rem-calc(10px);
+            }
+
+            a.visual__history-clear {
+                margin-right: 0;
             }
         }
 
@@ -77,12 +84,13 @@
         width: 100%;
         z-index: 1;
 
-        img {
+        svg {
             position: relative;
-            left: calc(50% - 44px);
-            top: 38%;
+            left: 30%;
+            top: 0;
         }
     }
+
 }
 
 .visualizer {
