@@ -1,7 +1,12 @@
 <section class="visual">
     <div class="medium-8 small-12 columns">
         <section ng-cloak class="visualizer card">
-            <diggly-visual class="visualizer-container" data="visual.model.data" on-click="visual.action.onClick(item)"></diggly-visual>
+            <div class="visual__loader" ng-show="loading">
+                <img src="assets/loader.gif" alt="loading...please wait">
+            </div>
+            <div ng-show="!loading">
+                <div diggly-visual class="visualizer-container" data="visual.model.data" on-click="visual.action.onClick(item)"></div>
+            </div>
         </section>
     </div>
 
