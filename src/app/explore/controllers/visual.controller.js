@@ -95,7 +95,6 @@
 
             // Use services for scalability
             m.history = ExploreService.getHistory() || [];
-            console.log(m.history);
             // Initialize bookmark or get them;
             $window.__bookmarks__ = ExploreService.getBookmarks() || [];
         }
