@@ -16,6 +16,7 @@
     "_": false,
     "$": false,
     "Blob": false,
-    "jQuery": false
+    "jQuery": false,
+    "Cookies": false
   }
 }
