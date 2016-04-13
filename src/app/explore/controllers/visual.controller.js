@@ -84,8 +84,14 @@
         onClick: function(item) {
             a.updateHistory();
             a.fetchTopic(item);
+
+            var sessionData = {
+              centralNodeID: m.currentTopic.article_id,
+              nodeID: item
+            };
+
             // Sukrit, you can switch this to a jQuery event if you please.
-            $('body').trigger("D3:Click", item);
+            $('body').trigger("visual:clicked-node", sessionData);
         },
 
         init: function () {
