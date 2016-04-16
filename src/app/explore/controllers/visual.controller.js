@@ -6,7 +6,7 @@
     .controller('VisualController', VisualController);
 
   /** @ngInject */
-  function VisualController(DigglyService, ExploreService, $state, $scope, $window) {
+  function VisualController(DigglyService, ExploreService, $state, $scope) {
     var m = this.model = {
         history: [],
         currentTopic: '',
@@ -15,24 +15,14 @@
 
     $scope.loading = false;
 
-    // Should be a better way to pass around to other views
-    $scope.history = m.history;
-
     var a = this.action = {
         /**
          * Updates the history only if it's unique
          * @return {[type]} [description]
          */
-        updateHistory: function() {
-            var indexInHistory = _.findIndex(m.history, function(o) {
-                return o.article_id === m.currentTopic.article_id;
-            });
-
-            if (indexInHistory === -1) {
-                m.history.unshift(m.currentTopic);
-            }
-
-            $window.__history__ = m.history;
+        updateHistory: function(topic) {
+            ExploreService.setHistory(topic);
+            m.history = ExploreService.getHistory();
         },
         /**
          * Retrieves a Diggly topic and update the routes
@@ -59,7 +49,7 @@
                 $scope.loading = false;
             })
             .finally(function() {
-                a.updateHistory();
+                a.updateHistory(m.currentTopic);
             });
         },
         /**
@@ -82,7 +72,6 @@
         },
 
         onClick: function(item) {
-            a.updateHistory();
             a.fetchTopic(item);
 
             var sessionData = {
@@ -101,8 +90,6 @@
 
             // Use services for scalability
             m.history = ExploreService.getHistory() || [];
-            // Initialize bookmark or get them;
-            $window.__bookmarks__ = ExploreService.getBookmarks() || [];
         }
     };
 

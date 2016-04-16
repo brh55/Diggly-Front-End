@@ -32,6 +32,9 @@
              */
             removeItem: function(currentItem) {
                 ExploreService.removeBookmarkItem(currentItem);
+                m.bookmarks = ExploreService.getBookmarks();
+
+                a.export();
             },
 
             /**
@@ -40,7 +43,9 @@
              */
             clearBookmarks: function() {
                 ExploreService.clearBookmarks();
-                m.bookmarks.length = 0;
+                m.bookmarks = ExploreService.getBookmarks();
+
+                a.export();
             },
 
             /**
@@ -103,7 +108,9 @@
              * @return {array} array of normalized bookmarks
              */
             normalize: function () {
-                var normalizedBookmarks = _.map($window.__bookmarks__, function (article) {
+                m.bookmarks = ExploreService.getBookmarks();
+
+                var normalizedBookmarks = _.map(m.bookmarks, function (article) {
                     var tempObj = {
                         "Wikipedia ID": article.article_id,
                         "Wikipedia Title": article.article_title,
