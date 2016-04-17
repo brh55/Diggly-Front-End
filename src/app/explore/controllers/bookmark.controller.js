@@ -21,7 +21,10 @@
                 }
             ],
             downloadUrl: "",
-            fileName: "MyBookmarks"
+            fileName: "MyBookmarks",
+            summary: true,
+            longDesc: true,
+            wikiUrl: true
         };
 
         var a = this.action = {
@@ -113,11 +116,20 @@
                 var normalizedBookmarks = _.map(m.bookmarks, function (article) {
                     var tempObj = {
                         "Wikipedia ID": article.article_id,
-                        "Wikipedia Title": article.article_title,
-                        "Wikipedia Link": article.wiki_link,
-                        "Description": article.description,
-                        "Short Summary": article.summary
+                        "Wikipedia Title": article.article_title
                     };
+
+                    if (m.wikiUrl) {
+                        tempObj["Wikipedia Link"] = article.wiki_link
+                    }
+
+                    if (m.summary) {
+                        tempObj["Summary"] = article.summary;
+                    }
+
+                    if (m.longDesc) {
+                        tempObj["Description"] = article.description;
+                    }
 
                     return tempObj;
                 });
