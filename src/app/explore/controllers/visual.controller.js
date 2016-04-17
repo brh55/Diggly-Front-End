@@ -6,7 +6,7 @@
     .controller('VisualController', VisualController);
 
   /** @ngInject */
-  function VisualController(DigglyService, ExploreService, $state, $scope) {
+  function VisualController(DigglyService, ExploreService, $state, $scope, $rootScope) {
     var m = this.model = {
         history: [],
         currentTopic: '',
@@ -50,6 +50,7 @@
             })
             .finally(function() {
                 a.updateHistory(m.currentTopic);
+                $rootScope.$emit("visual:update", m.currentTopic);
             });
         },
         /**

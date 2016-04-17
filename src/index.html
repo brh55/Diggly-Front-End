@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <fb-share></fb-share>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -42,6 +43,23 @@
             </div>
         </div>
     </footer>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '525981824250166',
+          xfbml      : true,
+          version    : 'v2.6'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
