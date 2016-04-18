@@ -33,20 +33,23 @@
             $scope.loading = true;
 
             DigglyService.getRelevantTopics(id).then(function(response) {
-                // Strip restangular objects and keep data clean
-                m.data = response.plain(response);
-                // set current topic
-                m.currentTopic = _.omit(m.data, 'linked_topics');
-                // change location url, but don't reload to preserve model
-                $state.go('explore.visual', {
-                    id: id
-                }, {
-                    location: true,
-                    notify: false,
-                    reload: false
-                });
+                // Only update and return this if the user is current on the visual page
+                if ($state.is('explore.visual')) {
+                  // Strip restangular objects and keep data clean
+                  m.data = response.plain(response);
+                  // set current topic
+                  m.currentTopic = _.omit(m.data, 'linked_topics');
+                  // change location url, but don't reload to preserve model
+                  $state.go('explore.visual', {
+                      id: id
+                  }, {
+                      location: true,
+                      notify: false,
+                      reload: false
+                  });
 
-                $scope.loading = false;
+                  $scope.loading = false;
+                }
             })
             .finally(function() {
                 a.updateHistory(m.currentTopic);
