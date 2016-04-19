@@ -93,9 +93,20 @@
 
 }
 
+.social {
+    padding: 0.3rem 1.25rem;
+
+    .social-card {
+        h3 {
+            float: left;
+            margin-right: rem-calc(20px);
+        }
+    }
+}
+
 .visualizer {
     height: 100%;
-    width: 100%;
+    width: calc(100% + 14px);
     margin-left: -14px; // left to override foundation padding
 
     @media #{$small-only} {
@@ -104,7 +115,7 @@
     }
 
     @media #{$medium-up} {
-        min-height: 600px;
+        min-height: 670px;
     }
 
 
@@ -116,7 +127,7 @@
     &-container,
     svg {
         height: 100%;
-        min-height: 600px;
+        min-height: 670px;
 
         @media #{$small-only} {
             min-height: 437px;

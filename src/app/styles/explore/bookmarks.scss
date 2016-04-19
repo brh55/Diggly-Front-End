@@ -13,6 +13,12 @@
         }
     }
 
+    &__filter {
+        margin-top: rem-calc(10px);
+        margin-left: rem-calc(15px);
+        margin-bottom: rem-calc(30px);
+    }
+
     &__btns {
         border-top: 1px solid $subtle-grey;
         padding: rem-calc(20px) 0;

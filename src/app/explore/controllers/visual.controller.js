@@ -6,7 +6,7 @@
     .controller('VisualController', VisualController);
 
   /** @ngInject */
-  function VisualController(DigglyService, ExploreService, $state, $scope, $window) {
+  function VisualController(DigglyService, ExploreService, $state, $scope, $rootScope) {
     var m = this.model = {
         history: [],
         currentTopic: '',
@@ -15,24 +15,14 @@
 
     $scope.loading = false;
 
-    // Should be a better way to pass around to other views
-    $scope.history = m.history;
-
     var a = this.action = {
         /**
          * Updates the history only if it's unique
          * @return {[type]} [description]
          */
-        updateHistory: function() {
-            var indexInHistory = _.findIndex(m.history, function(o) {
-                return o.article_id === m.currentTopic.article_id;
-            });
-
-            if (indexInHistory === -1) {
-                m.history.unshift(m.currentTopic);
-            }
-
-            $window.__history__ = m.history;
+        updateHistory: function(topic) {
+            ExploreService.setHistory(topic);
+            m.history = ExploreService.getHistory();
         },
         /**
          * Retrieves a Diggly topic and update the routes
@@ -43,23 +33,27 @@
             $scope.loading = true;
 
             DigglyService.getRelevantTopics(id).then(function(response) {
-                // Strip restangular objects and keep data clean
-                m.data = response.plain(response);
-                // set current topic
-                m.currentTopic = _.omit(m.data, 'linked_topics');
-                // change location url, but don't reload to preserve model
-                $state.go('explore.visual', {
-                    id: id
-                }, {
-                    location: true,
-                    notify: false,
-                    reload: false
-                });
+                // Only update and return this if the user is current on the visual page
+                if ($state.is('explore.visual')) {
+                  // Strip restangular objects and keep data clean
+                  m.data = response.plain(response);
+                  // set current topic
+                  m.currentTopic = _.omit(m.data, 'linked_topics');
+                  // change location url, but don't reload to preserve model
+                  $state.go('explore.visual', {
+                      id: id
+                  }, {
+                      location: true,
+                      notify: false,
+                      reload: false
+                  });
 
-                $scope.loading = false;
+                  $scope.loading = false;
+                }
             })
             .finally(function() {
-                a.updateHistory();
+                a.updateHistory(m.currentTopic);
+                $rootScope.$emit("visual:update", m.currentTopic);
             });
         },
         /**
@@ -82,7 +76,6 @@
         },
 
         onClick: function(item) {
-            a.updateHistory();
             a.fetchTopic(item);
 
             var sessionData = {
@@ -101,8 +94,6 @@
 
             // Use services for scalability
             m.history = ExploreService.getHistory() || [];
-            // Initialize bookmark or get them;
-            $window.__bookmarks__ = ExploreService.getBookmarks() || [];
         }
     };
 

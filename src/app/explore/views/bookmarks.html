@@ -33,6 +33,7 @@
                 <form>
                     <label for="fileName">File Name:</label>
                     <input name="fileName" type="text" ng-model="bookmarks.model.fileName" />
+
                     <div class="export__selection">
                         <label for="exportSelection">Export Type:</label>
                         <select name="exportSelection" ng-model="bookmarks.model.exportType" ng-change="bookmarks.action.export()" ng-options="extension.type as extension.label for extension in bookmarks.model.extensions">
@@ -40,11 +41,24 @@
                         </select>
                     </div>
 
+                    <div class="export__filter">
+                        <div>
+                            <input name="summary" type="checkbox" ng-model="bookmarks.model.summary" ng-change="bookmarks.action.export()"/>
+                            <label for="summary">Include Summary</label>
+                        </div>
+                        <div>
+                            <input name="longDesc" type="checkbox" ng-model="bookmarks.model.longDesc" ng-change="bookmarks.action.export()"/>
+                            <label for="longDesc">Include Long Description</label>
+                        </div>
+                        <div>
+                            <input name="wikiUrl" type="checkbox" ng-model="bookmarks.model.wikiUrl" ng-change="bookmarks.action.export()"/>
+                            <label for="wikiUrl">Include Wikipedia URL</label>
+                        </div>
+                    </div>
 
                     <div class="export__btns">
                         <a ng-href="{{ bookmarks.model.downloadUrl }}" class="export__btn" download="{{ bookmarks.model.fileName }}">Export</a>
                     </div>
-
                 </form>
             </div>
         </article>

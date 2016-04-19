@@ -6,15 +6,20 @@
         .factory('ExploreService', ExploreService);
 
     /** @ngInject */
-    function ExploreService ($window, $rootScope) {
-        var actions = {
+    function ExploreService ($rootScope) {
+        var model = {
+            history: [],
+            bookmarks: []
+        };
+
+        var action = {
             /**
              * Clears history in window object
              * @return {void}
              */
             clearHistory: function () {
-                var arrayLen = $window.__history__.length;
-                $window.__history__ = _.drop($window.__history__, arrayLen);
+                var arrayLen = model.history.length;
+                model.history = _.drop(model.history, arrayLen);
                 $rootScope.$emit("notify:service", "History cleared.", true);
             },
             /**
@@ -22,8 +27,8 @@
              * @return {void}
              */
             clearBookmarks: function () {
-                var arrayLen = $window.__bookmarks__.length;
-                $window.__bookmarks__ = _.drop($window.__history__, arrayLen);
+                var arrayLen = model.bookmarks.length;
+                model.bookmarks = _.drop(model.history, arrayLen);
                 $rootScope.$emit("notify:service", "Bookmarks cleared.", true);
             },
             /**
@@ -32,19 +37,17 @@
              * @return {void}
              */
             removeHistoryItem: function (item) {
-                _.remove($window.__history__, function(currentHistory) {
+                _.remove(model.history, function(currentHistory) {
                     return currentHistory.article_id === item.article_id;
                 });
             },
-            // TODO: Can abstract this into one function to take two params like such:
-            // remove(bookmark or history, item);
             /**
              * Removes a bookmark item from the bookmark list
              * @param  {object} item Article Object
              * @return {void}
              */
             removeBookmarkItem: function (item) {
-                _.remove($window.__bookmarks__, function(currentBookmark) {
+                _.remove(model.bookmarks, function(currentBookmark) {
                     return currentBookmark.article_id === item.article_id;
                 });
             },
@@ -57,14 +60,28 @@
                     return currentBookmark.article_id === item.article_id;
                 };
 
-                var bookmarks = $window.__bookmarks__;
+                var bookmarks = model.bookmarks;
 
                 // If it's empty or unique ==> Push
                 if (bookmarks.length === 0 || _.findIndex(bookmarks, check) === -1) {
                     $rootScope.$emit("notify:service", item.article_title + " has been added to your bookmarks.", false);
-                    $window.__bookmarks__.push(item);
+                    model.bookmarks.push(item);
                 } else {
                     $rootScope.$emit("notify:service", item.article_title + " already exists in your bookmarks.", true);
+                }
+            },
+
+            setHistory: function (topic) {
+                if (model.history.length > 0) {
+                    var indexInHistory = _.findIndex(model.history, function(o) {
+                        return o.article_id === topic.article_id;
+                    });
+
+                    if (indexInHistory === -1) {
+                        model.history.unshift(topic);
+                    }
+                } else {
+                    model.history.push(topic);
                 }
             },
 
@@ -73,10 +90,10 @@
              * @return {array} array of history items
              */
             getHistory: function () {
-                if (!$window.__history__) {
-                    $window.__history__ = [];
+                if (!model.history) {
+                    model.history = [];
                 }
-                return $window.__history__;
+                return model.history;
             },
 
             /**
@@ -84,21 +101,22 @@
              * @return {array} array of bookmark items
              */
             getBookmarks: function () {
-                if (!$window.__bookmarks__) {
-                    $window.__bookmarks__ = [];
+                if (!model.bookmarks) {
+                    model.bookmarks = [];
                 }
-                return $window.__bookmarks__;
+                return model.bookmarks;
             }
         };
 
         return {
-            clearHistory: actions.clearHistory,
-            clearBookmarks: actions.clearBookmarks,
-            removeHistoryItem: actions.removeHistoryItem,
-            removeBookmarkItem: actions.removeBookmarkItem,
-            getHistory: actions.getHistory,
-            addBookmark: actions.addBookmark,
-            getBookmarks: actions.getBookmarks
+            clearHistory: action.clearHistory,
+            clearBookmarks: action.clearBookmarks,
+            removeHistoryItem: action.removeHistoryItem,
+            removeBookmarkItem: action.removeBookmarkItem,
+            setHistory: action.setHistory,
+            getHistory: action.getHistory,
+            addBookmark: action.addBookmark,
+            getBookmarks: action.getBookmarks
         };
     }
 
