@@ -1,0 +1,11 @@
+<div class="card">
+    <h4>
+        <a ng-click="redirect()">{{ title }}</a>
+    </h4>
+
+    <p ng-bind="(content | limitTo: 200) + '...'" +></p>
+
+    <div class="card-btn__container">
+        <a ng-click="redirect()"><i class="material-icons">arrow_forward</i></a>
+    </div>
+</div>

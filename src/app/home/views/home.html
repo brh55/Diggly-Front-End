@@ -1,4 +1,4 @@
-<main class="home">
+<main class="home" ng-view>
     <header>
         <div class="row">
             <h1 ui-sref="home">diggly</h1>
@@ -12,41 +12,8 @@
     <section class="recent">
         <div class="row">
             <h3>Recently Discovered</h3>
-
-            <article class="medium-4 small-12 columns">
-                <div class="card">
-                    <h4><a ui-sref="explore({id:37969})">Ramen</a></h4>
-
-                    <p>Ramen (/ˈrɑːmən/) (ラーメン, rāmen, IPA: [ɽäꜜːmeɴ]) is a Japanese noodle soup dish. It consists of Chinese-style wheat noodles served in a meat- or (occasionally)...</p>
-
-                    <div class="card-btn__container">
-                        <a ui-sref="explore({id:37969})"><i class="material-icons">arrow_forward</i></a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="medium-4 small-12 columns">
-                <div class="card">
-                    <h4><a ui-sref="explore({id:47775352})">Crab Rangoon</a></h4>
-
-                    <p>Crab Rangoon, sometimes called crab puffs, crab rangoon puffs, or cheese wontons, are deep-fried dumpling appetizers served in American Chinese and...</p>
-                    
-                    <div class="card-btn__container">
-                        <a ui-sref="explore({id:47775352})"><i class="material-icons">arrow_forward</i></a>
-                    </div>
-                </div>
-            </article>
-
-             <article class="medium-4 small-12 columns">
-                <div class="card">
-                    <h4><a ui-sref="explore({id:1330232})">Spring roll</a></h4>
-
-                    <p>Spring rolls are a large variety of filled, rolled appetizers or dim sum found in East Asian and Southeast Asian cuisine. The name is a literal translation of the ...</p>
-                    
-                    <div class="card-btn__container">
-                        <a ui-sref="explore({id:1330232})"><i class="material-icons">arrow_forward</i></a>
-                    </div>
-                </div>
+            <article class="medium-4 small-12 columns" ng-repeat="recentArticle in home.model.recent">
+                <topic-card ng-cloak title="recentArticle.article_title" content="recentArticle.summary" id="recentArticle.article_id"> {{recentArticle }}</topic-card>
             </article>
         </div>
     </section>
@@ -56,43 +23,18 @@
             <article class="medium-4 small-12 columns">
                 <h3>Trending Now</h3>
 
-                <div class="card">
-                    <h4><a ui-sref="explore({id:21181})">Nancy Reagan</a></h4>
-
-                    <p>Nancy Davis Reagan (born Anne Frances Robbins; July 6, 1921 – March 6, 2016) was an American actress and the wife of the 40th President of the United States...</p>
-
-                    <div class="card-btn__container">
-                        <a ui-sref="explore({id:21181})"><i class="material-icons">arrow_forward</i></a>
-                    </div>
-                </div>
+                <topic-card ng-cloak title="home.model.trending.article_title" content="home.model.trending.summary" id="home.model.trending.article_id"></topic-card>
             </article>
             <article class="medium-4 small-12 columns">
                 <h3>Most Popular</h3>
 
-                <div class="card">
-                    <h4><a ui-sref="explore({id:5422144})">Taylor Swift</a></h4>
-
-                    <p>Taylor Alison Swift (born December 13, 1989) is an American singer-songwriter. Raised in Wyomissing, Pennsylvania, she moved to Nashville, ...</p>
-
-                    <div class="card-btn__container">
-                        <a ui-sref="explore({id:5422144})"><i class="material-icons">arrow_forward</i></a>
-                    </div>
-                </div>
+                <topic-card ng-cloak title="home.model.popular.article_title" content="home.model.popular.summary" id="home.model.popular.article_id"></topic-card>
             </article>
             <article class="medium-4 small-12 columns">
                 <h3>Something New</h3>
 
-                <div class="card">
-                    <h4><a ui-sref="explore({id:3382})">Britney Spears</a></h4>
-
-                    <p>Britney Jean Spears (born December 2, 1981) is an American singer and actress...</p>
-
-                    <div class="card-btn__container">
-                        <a ui-sref="explore({id:3382})"><i class="material-icons">arrow_forward</i></a>
-                    </div>
-                </div>
+                <topic-card ng-cloak title="home.model.random.article_title" content="home.model.random.summary" id="home.model.random.article_id"></topic-card>
             </article>
-
         </div>
     </section>
 </main>

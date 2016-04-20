@@ -10,7 +10,9 @@
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'app/home/views/home.html'
+        templateUrl: 'app/home/views/home.html',
+        controller: 'HomeController',
+        controllerAs: 'home'
       })
       // Abstract parent state
       .state('explore', {

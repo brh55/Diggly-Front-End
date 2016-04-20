@@ -111,7 +111,7 @@
                 .append('circle')
                 .attr({
                   'r': function(d) {
-                      return d.score * 40; // TODO: Find a better number or dynamic number based on sizing
+                      return d.score * 45; // TODO: Find a better number or dynamic number based on sizing
                   },
                   'class': function(d, i) {
                       return 'node-' + i;
