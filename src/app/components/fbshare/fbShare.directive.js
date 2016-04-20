@@ -6,7 +6,7 @@
     .directive('fbShare', fbShare);
 
   /** @ngInject */
-  function fbShare($rootScope) {
+  function fbShare() {
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/fbshare/metaTemplate.html',
@@ -25,7 +25,6 @@
       vm.type = 'website';
 
       $rootScope.$on('visual:update', function(event, data) {
-        console.log(data);
           vm.title = data.article_title;
           vm.url = $location.absUrl();
           vm.description = data.summary;
