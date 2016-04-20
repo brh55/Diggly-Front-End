@@ -6,7 +6,7 @@
         .controller('HomeController', HomeController);
 
     /** @ngInject */
-    function HomeController(DigglyService, $scope) {
+    function HomeController(DigglyService) {
         var m = this.model = {
             random: {},
             popular: {},
