@@ -7,6 +7,7 @@
 
     h3 {
         color: $blue;
+        text-transform: capitalize;
     }
 
     &:not(:last-child) {

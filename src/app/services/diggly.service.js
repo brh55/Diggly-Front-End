@@ -50,13 +50,37 @@
             getRelevantTopics: function(topicId) {
                 return wikiTopics.one('explore', topicId)
                     .get();
+            },
+
+            getRandomTopic: function() {
+                return Restangular.one('topics', 'random')
+                    .get();
+            },
+
+            getPopularTopic: function() {
+                return Restangular.one('topics', 'popular')
+                    .get();
+            },
+
+            getTrendingTopic: function() {
+                return Restangular.one('topics', 'trending')
+                    .get();
+            },
+
+            getRecentTopics: function() {
+                return Restangular.one('topics', 'recent')
+                    .get();
             }
         };
 
         return {
             getAllTopics: a.getAllTopics,
             getTopic: a.getTopic,
-            getRelevantTopics: a.getRelevantTopics
+            getRelevantTopics: a.getRelevantTopics,
+            getPopularTopic: a.getPopularTopic,
+            getRecentTopics: a.getRecentTopics,
+            getRandomTopic: a.getRandomTopic,
+            getTrendingTopic: a.getTrendingTopic
         };
     }
 })();

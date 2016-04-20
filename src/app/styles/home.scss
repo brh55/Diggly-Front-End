@@ -63,6 +63,10 @@
         padding-bottom: rem-calc(5px);
         min-height: 249px;
 
+        a {
+            text-transform: capitalize;
+        }
+
         h4 {
             color: $blue;
             font-size: rem-calc(16px);
@@ -91,6 +95,11 @@
             margin-bottom: rem-calc(20px);
             min-height: 200px;
         }
+    }
+
+    input[type="text"] {
+        background: rgba(216, 216, 216, 0.23);
+        border-radius: 4px;
     }
 }
 
