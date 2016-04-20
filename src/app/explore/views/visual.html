@@ -2,7 +2,7 @@
     <div class="medium-8 small-12 columns">
         <section ng-cloak class="visualizer card">
             <div class="visual__loader" ng-show="loading">
-                <span class="visual__svg" ng-include src="'app/explore/views/partials/loader.html'"></span>
+                <img class="visual__svg" src="assets/ripple.svg"></span>
             </div>
             <div ng-show="!loading">
                 <div diggly-visual class="visualizer-container" data="visual.model.data" on-click="visual.action.onClick(item)"></div>
