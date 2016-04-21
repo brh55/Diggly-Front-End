@@ -9,7 +9,7 @@
   function fbShare() {
     var directive = {
       restrict: 'E',
-      templateUrl: 'app/components/fbshare/metaTemplate.html',
+      templateUrl: 'app/components/fbShare/metaTemplate.html',
       scope: {},
       controller: fbShareController,
       controllerAs: 'fbShare',
