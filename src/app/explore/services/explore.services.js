@@ -64,10 +64,11 @@
 
                 // If it's empty or unique ==> Push
                 if (bookmarks.length === 0 || _.findIndex(bookmarks, check) === -1) {
-                    $rootScope.$emit("notify:service", item.article_title + " has been added to your bookmarks.", false);
                     model.bookmarks.push(item);
+                    $rootScope.$emit("notify:service", item.article_title + " has been added to your bookmarks.", false);
                 } else {
-                    $rootScope.$emit("notify:service", item.article_title + " already exists in your bookmarks.", true);
+                    action.removeBookmarkItem(item);
+                    $rootScope.$emit("notify:service", item.article_title + " has been removed from your bookmarks.", true);
                 }
             },
 
@@ -105,6 +106,21 @@
                     model.bookmarks = [];
                 }
                 return model.bookmarks;
+            },
+
+            /**
+             * Returns true or false if the bookmark exist currently
+             * @param  {number} id ID of Wikipedia Article
+             * @return {bool}    False or True
+             */
+            doesBookmarkExist: function(id) {
+                var object = _.find(model.bookmarks, function(bookmark) {
+                    return bookmark.article_id === id;
+                });
+
+                console.log(object);
+
+                return (angular.isObject(object)) ? true : false;
             }
         };
 
@@ -116,7 +132,8 @@
             setHistory: action.setHistory,
             getHistory: action.getHistory,
             addBookmark: action.addBookmark,
-            getBookmarks: action.getBookmarks
+            getBookmarks: action.getBookmarks,
+            doesBookmarkExist: action.doesBookmarkExist
         };
     }
 

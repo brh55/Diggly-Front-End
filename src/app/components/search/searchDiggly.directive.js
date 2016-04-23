@@ -11,6 +11,7 @@
         var directive = {
             restrict: 'E',
             templateUrl: 'app/components/search/search.html',
+            scope: {},
             controller: function () {
                 var directTo = function(topic) {
                     SearchService.getId(topic)

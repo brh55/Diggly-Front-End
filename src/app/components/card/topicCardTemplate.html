@@ -1,11 +1,20 @@
 <div class="card" ng-class="{ transition__done : loaded }">
-    <h4>
-        <a ng-click="redirect()">{{ title }}</a>
-    </h4>
+    <span ng-show="loaded">
+        <h4>
+            <a ng-click="redirect()">{{ title }}</a>
+        </h4>
 
-    <p ng-bind="(content | limitTo: 200) + '...'"></p>
+        <p ng-bind="(content | limitTo: 200) + '...'"></p>
 
-    <div class="card-btn__container">
-        <a ng-click="redirect()"><i class="material-icons">arrow_forward</i></a>
-    </div>
+        <div class="card-btn__container">
+            <a ng-click="redirect()"><i class="material-icons">arrow_forward</i></a>
+        </div>
+    </span>
+    <span ng-show="!loaded">
+        <div class="loader__circle">
+            <div id="circleG_1" class="circleG"></div>
+            <div id="circleG_2" class="circleG"></div>
+            <div id="circleG_3" class="circleG"></div>
+        </div>
+    </span>
 </div>
