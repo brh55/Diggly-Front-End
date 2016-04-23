@@ -6,7 +6,7 @@
     .directive('digglyVisual', digglyVisual);
 
   /** @ngInject */
-  function digglyVisual(d3Service, $window) {
+  function digglyVisual(d3Service, $window, $rootScope) {
     var directive = {
       restrict: 'EA',
       scope: {
@@ -219,7 +219,15 @@
                 .attr('fill', '#ccc')
                 .attr('stroke','#ccc');
 
+              var tickCounter = 0;
               var tick = function () {
+                tickCounter++;
+
+                if (tickCounter === 48) {
+                  // may need to be adjusted
+                  scope.$emit('visual:semi-loaded');
+                };
+
                 edges
                   .attr({
                     "x1": function(d) { return d.source.x; },
@@ -277,6 +285,19 @@
      * @return {object}      D3 Dataset
      */
     var createNodeData = function(data) {
+      var highestScore = 0;
+      var relativeFactor;
+
+      _.each(data.linked_topics, function(topic) {
+        highestScore = (highestScore < topic.score) ? topic.score : highestScore;
+        // We deem that the most relevant topic will be 80% of the main topic;
+        relativeFactor = 0.80 / highestScore;
+      });
+
+      _.map(data.linked_topics, function (topic) {
+         topic.score *= relativeFactor;
+      });
+
       var nodes = _.union(createMainNode(data), data.linked_topics);
 
       return nodes;

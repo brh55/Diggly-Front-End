@@ -47,8 +47,6 @@
                       notify: false,
                       reload: false
                   });
-
-                  $scope.loading = false;
                 }
             })
             .finally(function() {
@@ -96,6 +94,13 @@
             m.history = ExploreService.getHistory() || [];
         }
     };
+
+    // Watcher on when visualizer component is partially ready
+    $scope.$on('visual:semi-loaded', function () {
+        $scope.$apply(function() {
+          $scope.loading = false;
+        })
+    });
 
     a.init();
   }
