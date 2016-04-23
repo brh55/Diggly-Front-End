@@ -91,6 +91,17 @@
             }
         }
 
+        @media #{$medium-up} {
+            transform: scale(1.05);
+            box-shadow: 3px 10px 8px 4px rgba(0, 0, 0, 0.09);
+            transition: all .2s cubic-bezier(0.59, 0.94, 1, 1);
+
+            &.transition__done {
+                transform: scale(1);
+                box-shadow: 2px 4px 6px 1px rgba(0, 0, 0, 0.09);
+            }
+        }
+
         @media #{$small-only} {
             margin-bottom: rem-calc(20px);
             min-height: 200px;
