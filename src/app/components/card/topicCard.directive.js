@@ -17,6 +17,8 @@
           },
 
           link: function (scope) {
+            scope.loaded = false;
+
             scope.params = {
                 id: scope.id
             };
@@ -26,6 +28,12 @@
                     id: scope.id
                 })
             };
+
+            scope.$watch('id', function (newV, oldV) {
+              if (typeof newV === 'number') {
+                scope.loaded = true
+              }
+            });
           }
         };
 
