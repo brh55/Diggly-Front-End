@@ -6,7 +6,7 @@
     .directive('digglyVisual', digglyVisual);
 
   /** @ngInject */
-  function digglyVisual(d3Service, $window, $rootScope) {
+  function digglyVisual(d3Service, $window, $rootScope, $state) {
     var directive = {
       restrict: 'EA',
       scope: {
@@ -45,7 +45,7 @@
 
             // Watches for scope.data change, and renders the SVG
             scope.$watch('data', function(newVal, oldVal) {
-              if (oldVal !== newVal) {
+              if (oldVal.article_title !== newVal.article_title) {
                 scope.render(newVal);
               }
             }, false);
@@ -92,6 +92,9 @@
                 .on('tick', tick)
                 .start();
 
+              var drag = force.drag()
+                .on("dragstart", dragStart);
+
               var edges = svg
                 .selectAll('line')
                 .data(m.d3Data.edges)
@@ -120,13 +123,23 @@
                 .style('fill', function(d, i) {
                   return colors(i);
                 })
-                .call(force.drag)
                 .on('click', function(d, i) {
+                  if (d3.event.defaultPrevented) return; // ignore drag
+
                   if (i !== 0) {
                     var selectedId = d.target_id;
                     scope.onClick({item: selectedId});
+                  } else {
+                    click();
                   }
-                });
+                })
+                .call(drag);
+
+              var n = nodes.length;
+
+              nodes.forEach(function(d, i) {
+                d.x = d.y = baseWidth / n * i;
+              });
 
 
               var nodelabels = svg
@@ -220,13 +233,14 @@
                 .attr('stroke','#ccc');
 
               var tickCounter = 0;
-              var tick = function () {
-                tickCounter++;
 
-                if (tickCounter === 48) {
-                  // may need to be adjusted
+              var tick = function () {
+                tickCounter++
+
+                if (tickCounter === 298) {
                   scope.$emit('visual:semi-loaded');
-                };
+                  return
+                }
 
                 edges
                   .attr({
@@ -254,6 +268,25 @@
               };
 
               force.on("tick", tick);
+
+              var tickInterval = 298;
+              for (var i = 0; i <= tickInterval; i++) {
+                force.tick();
+
+                if (i === 298) {
+                  force.stop();
+                }
+              }
+
+              // Helper functions
+
+              function click(d) {
+                d3.select(this).classed("fixed", d.fixed = false);
+              }
+
+              function dragStart(d) {
+                d3.select(this).classed("fixed", d.fixed = true);
+              }
             }; // End of Scope Render
         });
       }

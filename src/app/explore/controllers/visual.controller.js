@@ -97,9 +97,7 @@
 
     // Watcher on when visualizer component is partially ready
     $scope.$on('visual:semi-loaded', function () {
-        $scope.$apply(function() {
-          $scope.loading = false;
-        })
+        $scope.loading = false;
     });
 
     a.init();
