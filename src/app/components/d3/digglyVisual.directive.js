@@ -89,6 +89,7 @@
                 .charge([-500])
                 .theta(0.1)
                 .gravity(0.05)
+                .alpha(0.08)
                 .on('tick', tick)
                 .start();
 
@@ -104,7 +105,7 @@
                   return 'edge' + i;
                 })
                 .attr('marker-end','url(#marker_circle)')
-                .style('stroke','#ccc')
+                .style('stroke','#989898')
                 .style('pointer-events', 'none');
 
               var nodes = svg
@@ -129,8 +130,6 @@
                   if (i !== 0) {
                     var selectedId = d.target_id;
                     scope.onClick({item: selectedId});
-                  } else {
-                    click();
                   }
                 })
                 .call(drag);
