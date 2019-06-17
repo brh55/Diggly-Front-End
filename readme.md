@@ -14,6 +14,8 @@ Diggly creates smart data extraction and visualization of the knowledge containe
 Diggly is a visual Wikipedia explorer representing information from Wikipedia using graphs and simplified information, with little text. With Diggly, the innate ‘free-flow text’ characteristic of Wikipedia encyclopedia becomes a last resort. Instead, users of Diggly will be presented with the same information as Wikipedia and the powerful capacity to navigate related topics through condensed, easily consumed and aesthetically pleasing user interactions. This intuitive linked information is represented visually through graphs and other natural models of linked-data visualization.
 
 ![Diggly Screenshot](https://cloud.githubusercontent.com/assets/6020066/13560360/27f55e4a-e3ec-11e5-81ca-47b3cd6d704e.png)
+![Bookmarks](https://user-images.githubusercontent.com/6020066/59628069-981d7c80-90f4-11e9-8cb9-4b9355976c55.jpg)
+![VisualizationScreen](https://user-images.githubusercontent.com/6020066/59628070-98b61300-90f4-11e9-8c99-edad5acd3334.jpg)
 
 ## Front-End Set Up
 1. Install all dependencies
